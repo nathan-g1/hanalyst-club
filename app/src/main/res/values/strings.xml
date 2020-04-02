@@ -2,4 +2,5 @@
     <string name="app_name">HAnalystClub</string>
     <string name="login">LOGIN</string>
     <string name="welcome_to_hanalyst">Welcome to HAnalyst!</string>
+    <string name="title_activity_analysis">Analysis</string>
 </resources>
