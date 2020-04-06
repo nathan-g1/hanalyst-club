@@ -3,4 +3,8 @@
     <string name="login">LOGIN</string>
     <string name="welcome_to_hanalyst">Welcome to HAnalyst!</string>
     <string name="title_activity_analysis">Analysis</string>
+    <string name="email">test@test.com</string>
+    <string name="pass">password</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
 </resources>
