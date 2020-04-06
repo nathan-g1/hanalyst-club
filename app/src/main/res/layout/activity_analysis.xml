@@ -5,4 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".Analysis">
 
+    <GridView
+        android:id="@+id/grid_attack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit" />
 </FrameLayout>
