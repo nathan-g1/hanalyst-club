@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,36 @@
     <GridView
         android:id="@+id/grid_attack"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dashboard"
         android:columnWidth="90dp"
         android:numColumns="auto_fit" />
-</FrameLayout>
+
+    <GridView
+        android:id="@+id/grid_defence"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/grid_attack"
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit" />
+
+    <LinearLayout
+        android:id="@+id/dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="423" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="423" />
+    </LinearLayout>
+
+</RelativeLayout>
