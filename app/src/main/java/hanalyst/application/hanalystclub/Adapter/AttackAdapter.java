@@ -47,7 +47,7 @@ public class AttackAdapter extends BaseAdapter {
         TextView value = convertView.findViewById(R.id.value);
         TextView description = convertView.findViewById(R.id.description);
 
-        value.setText(arrayList.get(position).getValue());
+        value.setText(String.valueOf(arrayList.get(position).getValue()));
         description.setText(arrayList.get(position).getDesc());
         return convertView;
     }
