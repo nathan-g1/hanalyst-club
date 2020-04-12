@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import hanalyst.application.hanalystclub.Model.Attack;
+import hanalyst.application.hanalystclub.R;
 
 public class AttackAdapter extends BaseAdapter {
     private Context context;
@@ -39,8 +40,15 @@ public class AttackAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView textView = new TextView(context);
+        if (layoutInflater == null)
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null)
+            convertView = layoutInflater.inflate(R.layout.row_item, null);
+        TextView value = convertView.findViewById(R.id.value);
+        TextView description = convertView.findViewById(R.id.description);
 
-        return null;
+        value.setText(arrayList.get(position).getValue());
+        description.setText(arrayList.get(position).getDesc());
+        return convertView;
     }
 }
