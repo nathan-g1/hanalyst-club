@@ -21,4 +21,16 @@ public class Attack {
     public int getValue() {
         return value;
     }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }
