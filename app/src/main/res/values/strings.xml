@@ -9,4 +9,7 @@
     <string name="label_password">Password</string>
     <string name="number_on_row_item">3</string>
     <string name="description_on_row_item">Description</string>
+    <string name="effectiveness">ATT:EFF</string>
+    <string name="pause">PAUSE</string>
+    <string name="display_time">42:23</string>
 </resources>
