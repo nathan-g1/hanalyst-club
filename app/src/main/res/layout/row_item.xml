@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
 
@@ -11,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="@string/number_on_row_item"
-        android:textColor="@color/white"
         android:textSize="25sp" />
 
     <TextView
@@ -20,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:text="@string/description_on_row_item" />
 
 </LinearLayout>
