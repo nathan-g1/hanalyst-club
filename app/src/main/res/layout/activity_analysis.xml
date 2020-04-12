@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dashboard"
         android:columnWidth="90dp"
-        android:numColumns="auto_fit" />
+        android:numColumns="4" />
 
     <GridView
         android:id="@+id/grid_defence"
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/dashboard_attack"
         android:columnWidth="90dp"
-        android:numColumns="auto_fit" />
+        android:numColumns="4" />
 
     <LinearLayout
         android:id="@+id/dashboard"
