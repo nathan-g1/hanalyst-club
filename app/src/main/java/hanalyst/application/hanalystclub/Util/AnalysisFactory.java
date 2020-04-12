@@ -10,141 +10,14 @@ import hanalyst.application.hanalystclub.Model.Attack;
 import hanalyst.application.hanalystclub.Model.Defense;
 
 public class AnalysisFactory {
-    private JSONArray jsonArrayDefense;
-    private JSONObject jsonObjectDefense;
-    private JSONObject jsonObject;
+
+    private JSONObject jsonObject1;
     private JSONArray jsonArray;
-
-    public AnalysisFactory() {
-    }
-
+    private JSONArray jsonArrayDefense;
 
     {
         try {
-            jsonObjectDefense = new JSONObject("{\n" +
-                    "  \"data\": [\n" +
-                    "    {\n" +
-                    "      \"id\": 0,\n" +
-                    "      \"code\": \"TL\",\n" +
-                    "      \"desc\": \"Tackles lost\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 1,\n" +
-                    "      \"code\": \"TW\",\n" +
-                    "      \"desc\": \"Tackles won\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 2,\n" +
-                    "      \"code\": \"ILP\",\n" +
-                    "      \"desc\": \"Interceptions of long pass\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 3,\n" +
-                    "      \"code\": \"ISP\",\n" +
-                    "      \"desc\": \"Interceptions of short pass\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 4,\n" +
-                    "      \"code\": \"CL\",\n" +
-                    "      \"desc\": \"Clearance\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 5,\n" +
-                    "      \"code\": \"CA\",\n" +
-                    "      \"desc\": \"Crosses against\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 6,\n" +
-                    "      \"code\": \"HW\",\n" +
-                    "      \"desc\": \"Headers won\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 7,\n" +
-                    "      \"code\": \"HL\",\n" +
-                    "      \"desc\": \"Headers lost\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 8,\n" +
-                    "      \"code\": \"OR\",\n" +
-                    "      \"desc\": \"Offs\"\n" +
-                    "      id\n" +
-                    "      \"es received\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 9,\n" +
-                    "      \"code\": \"STR\",\n" +
-                    "      \"desc\": \"Shots on target received\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 10\n" +
-                    "      \"code\": \"SofTR\",\n" +
-                    "      \"desc\": \"Shots off target received\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 11,\n" +
-                    "      \"code\": \"GC\",\n" +
-                    "      \"desc\": \"Goals conceded\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 12,\n" +
-                    "      \"code\": \"FKC\",\n" +
-                    "      \"desc\": \"Free Kick conceded\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 13,\n" +
-                    "      \"code\": \"PC\",\n" +
-                    "      \"desc\": \"Penalties conceded\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 14,\n" +
-                    "      \"code\": \"DM\",\n" +
-                    "      \"desc\": \"Defensive moves\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 15,\n" +
-                    "      \"code\": \"BC\",\n" +
-                    "      \"desc\": \"Body checks\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 16,\n" +
-                    "      \"code\": \"YC\",\n" +
-                    "      \"desc\": \"Yellow cards\",\n" +
-                    "      \"value\": 0\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"id\": 17,\n" +
-                    "      \"code\": \"RC\",\n" +
-                    "      \"desc\": \"Red cards\",\n" +
-                    "      \"value\": 0\n" +
-                    "    }\n" +
-                    "  ]\n" +
-                    "}");
-            jsonArrayDefense = jsonObjectDefense.getJSONArray("data");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    {
-        try {
-            jsonObject = new JSONObject("{\n" +
+            jsonObject1 = new JSONObject("{\n" +
                     "        \"data\": [\n" +
                     "        {\n" +
                     "        \"id\": 0,\n" +
@@ -226,7 +99,7 @@ public class AnalysisFactory {
                     "        }\n" +
                     "        ]\n" +
                     "        }");
-            jsonArray = jsonObject.getJSONArray("data");
+            jsonArray = jsonObject1.getJSONArray("data");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -236,16 +109,23 @@ public class AnalysisFactory {
         ArrayList<Attack> arrayListAttack = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Attack attack = null;
-                attack = new Attack(jsonObject.getString("code"),
-                        jsonObject.getString("desc"), jsonObject.getInt("value"));
+                JSONObject c = jsonArray.getJSONObject(i);
+                Attack attack = new Attack(c.getString("code"), c.getString("desc"), c.getInt("value"));
                 arrayListAttack.add(attack);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         return arrayListAttack;
+    }
+
+    {
+        try {
+            JSONObject jsonObjectDefense = new JSONObject("{  \"data\": [{\"id\": 0,\"code\": \"TL\",\"desc\": \"Tackles lost\",\"value\": 0},{\"id\": 1,\"code\": \"TW\",\"desc\": \"Tackles won\",\"value\": 0},{\"id\": 2,\"code\": \"ILP\",\"desc\": \"Interceptions of long pass\",\"value\": 0},{\"id\": 3,\"code\": \"ISP\",\"desc\": \"Interceptions of short pass\",\"value\": 0},{\"id\": 4,\"code\": \"CL\",\"desc\": \"Clearance\",\"value\": 0},{\"id\": 5,\"code\": \"CA\",\"desc\": \"Crosses against\",\"value\": 0},{\"id\": 6,\"code\": \"HW\",\"desc\": \"Headers won\",\"value\": 0},{\"id\": 7,\"code\": \"HL\",\"desc\": \"Headers lost\",\"value\": 0},{\"id\": 8,\"code\": \"OR\",\"desc\": \"Offsides received\",\"value\": 0},{\"id\": 9,\"code\": \"STR\",\"desc\": \"Shots on target received\",\"value\": 0},{\"id\": 10,\"code\": \"SofTR\",\"desc\": \"Shots off target received\",\"value\": 0},{\"id\": 11,\"code\": \"GC\",\"desc\": \"Goals conceded\",\"value\": 0},{\"id\": 12,\"code\": \"FKC\",\"desc\": \"Free Kick conceded\",\"value\": 0},{\"id\": 13,\"code\": \"PC\",\"desc\": \"Penalties conceded\",\"value\": 0},{\"id\": 14,\"code\": \"DM\",\"desc\": \"Defensive moves\",\"value\": 0},{\"id\": 15,\"code\": \"BC\",\"desc\": \"Body checks\",\"value\": 0},{\"id\": 16,\"code\": \"YC\",\"desc\": \"Yellow cards\",\"value\": 0},{\"id\": 17,\"code\": \"RC\",\"desc\": \"Red cards\",\"value\": 0}  ]}");
+            jsonArrayDefense = jsonObjectDefense.getJSONArray("data");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Defense> getDefenseList() {
