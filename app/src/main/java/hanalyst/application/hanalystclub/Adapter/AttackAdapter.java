@@ -1,21 +1,30 @@
 package hanalyst.application.hanalystclub.Adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import hanalyst.application.hanalystclub.Model.Attack;
+
 public class AttackAdapter extends BaseAdapter {
     private Context context;
+    private LayoutInflater layoutInflater;
+    private ArrayList<Attack> arrayList;
 
-    public AttackAdapter(Context c) {
+
+    public AttackAdapter(Context c, ArrayList<Attack> arrayList) {
         context = c;
+        this.arrayList = arrayList;
     }
 
     @Override
     public int getCount() {
-        return attackNotationNames.length;
+        return arrayList.size();
     }
 
     @Override
@@ -34,8 +43,4 @@ public class AttackAdapter extends BaseAdapter {
 
         return null;
     }
-
-    public int[] attackNotationValues = new int[13];
-    public String[] attackNotationNames = new String[13];
-
 }
