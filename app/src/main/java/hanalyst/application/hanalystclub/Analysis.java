@@ -3,8 +3,15 @@ package hanalyst.application.hanalystclub;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
+import hanalyst.application.hanalystclub.Adapter.AttackAdapter;
+import hanalyst.application.hanalystclub.Util.AnalysisFactory;
 
 public class Analysis extends Activity {
+
+    GridView gridAttack, gridDefence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +28,17 @@ public class Analysis extends Activity {
                         // Hide the nav bar and status bar
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
+
+        gridAttack = findViewById(R.id.grid_attack);
+        AnalysisFactory analysisFactory = new AnalysisFactory();
+        AttackAdapter attackAdapte = new AttackAdapter(getApplicationContext(), analysisFactory.getAttackList());
+        gridAttack.setAdapter(attackAdapte);
+        gridAttack.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "." + position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
