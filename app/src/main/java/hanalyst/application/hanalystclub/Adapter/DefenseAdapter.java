@@ -9,16 +9,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import hanalyst.application.hanalystclub.Model.Attack;
+import hanalyst.application.hanalystclub.Model.Defense;
 import hanalyst.application.hanalystclub.R;
 
-public class AttackAdapter extends BaseAdapter {
+public class DefenseAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<Attack> arrayList;
+    private ArrayList<Defense> arrayList;
 
 
-    public AttackAdapter(Context c, ArrayList<Attack> arrayList) {
+    public DefenseAdapter(Context c, ArrayList<Defense> arrayList) {
         context = c;
         this.arrayList = arrayList;
     }

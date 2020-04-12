@@ -11,33 +11,76 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dashboard"
         android:columnWidth="90dp"
-        android:numColumns="auto_fit" />
+        android:numColumns="4" />
 
     <GridView
         android:id="@+id/grid_defence"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/grid_attack"
+        android:layout_below="@id/dashboard_attack"
         android:columnWidth="90dp"
-        android:numColumns="auto_fit" />
+        android:numColumns="4" />
 
     <LinearLayout
         android:id="@+id/dashboard"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@color/colorAccent"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="423" />
+            android:gravity="center"
+            android:text="@string/playing_teams"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="423" />
+            android:gravity="center"
+            android:text="@string/pause"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/display_time"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dashboard_attack"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/grid_attack"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/effectiveness"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/defense_effectiveness"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>
