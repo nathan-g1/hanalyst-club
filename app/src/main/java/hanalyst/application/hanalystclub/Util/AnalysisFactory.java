@@ -10,9 +10,6 @@ import hanalyst.application.hanalystclub.Model.Attack;
 import hanalyst.application.hanalystclub.Model.Defense;
 
 public class AnalysisFactory {
-    AnalysisData analysisData = new AnalysisData();
-    private String attackAnalysis = analysisData.getAttakAnalysis();
-    private String defenceAnalysis = analysisData.getDefenceAnalysis();
     private JSONArray jsonArrayDefense;
     private JSONObject jsonObjectDefense;
     private JSONObject jsonObject;
@@ -251,18 +248,19 @@ public class AnalysisFactory {
         return arrayListAttack;
     }
 
-    public ArrayList<Defense> getDefenseList() throws JSONException {
+    public ArrayList<Defense> getDefenseList() {
         ArrayList<Defense> arrayListDefense = new ArrayList<>();
         for (int i = 0; i < jsonArrayDefense.length(); i++) {
-            JSONObject jsonObject = jsonArrayDefense.getJSONObject(i);
-            Defense defense = new Defense(jsonObject.getString("code"),
-                    jsonObject.getString("desc"), jsonObject.getInt("value"));
-            arrayListDefense.add(defense);
+            try {
+                JSONObject jsonObject = jsonArrayDefense.getJSONObject(i);
+                Defense defense = null;
+                defense = new Defense(jsonObject.getString("code"),
+                        jsonObject.getString("desc"), jsonObject.getInt("value"));
+                arrayListDefense.add(defense);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         return arrayListDefense;
-    }
-
-    public int getAttackAnalysis() {
-        return attackAnalysis.length();
     }
 }
