@@ -2,13 +2,17 @@ package hanalyst.application.hanalystclub;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import hanalyst.application.hanalystclub.Adapter.AttackAdapter;
 import hanalyst.application.hanalystclub.Adapter.DefenseAdapter;
+import hanalyst.application.hanalystclub.Model.Attack;
 import hanalyst.application.hanalystclub.Model.Defense;
 import hanalyst.application.hanalystclub.Util.AnalysisFactory;
 
@@ -34,9 +38,30 @@ public class Analysis extends Activity {
 
         gridAttack = findViewById(R.id.grid_attack);
         gridDefence = findViewById(R.id.grid_defence);
-        AttackAdapter attackAdapter = new AttackAdapter(getApplicationContext(), new AnalysisFactory().getAttackList());
+        // Attack
+        final ArrayList<Attack> attacks = new AnalysisFactory().getAttackList();
+        final AttackAdapter attackAdapter = new AttackAdapter(getApplicationContext(), attacks);
         gridAttack.setAdapter(attackAdapter);
-        DefenseAdapter defenseAdapter = new DefenseAdapter(getApplicationContext(), new AnalysisFactory().getDefenseList());
+        gridAttack.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int prev = attacks.get(position).getValue();
+                attacks.get(position).setValue(prev + 1);
+                Log.d("val", "" + prev);
+                gridAttack.setAdapter(new AttackAdapter(getApplicationContext(), attacks));
+            }
+        });
+        // Defence
+        final ArrayList<Defense> defence = new AnalysisFactory().getDefenseList();
+        DefenseAdapter defenseAdapter = new DefenseAdapter(getApplicationContext(), defence);
         gridDefence.setAdapter(defenseAdapter);
+        gridDefence.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int prev = defence.get(position).getValue();
+                defence.get(position).setValue(prev + 1);
+                gridDefence.setAdapter(new DefenseAdapter(getApplicationContext(), defence));
+            }
+        });
     }
 }
