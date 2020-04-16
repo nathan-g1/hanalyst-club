@@ -1,10 +1,12 @@
-package hanalyst.application.hanalystclub;
+package hanalyst.application.hanalystclub.lifecycle;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import hanalyst.application.hanalystclub.R;
 
 public class Login extends Activity {
     Button loginBtn;
@@ -17,7 +19,8 @@ public class Login extends Activity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Analysis.class));
+                // TODO: Goto the next game form before analysis
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             }
         });
     }
