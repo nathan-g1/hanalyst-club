@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".lifecycle.HomeActivity"></activity>
         <activity android:name=".lifecycle.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +19,7 @@
         </activity>
         <activity
             android:name=".lifecycle.Analysis"
-            android:label="@string/title_activity_analysis"></activity>
+            android:label="@string/title_activity_analysis" />
     </application>
 
 </manifest>
