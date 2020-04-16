@@ -1,13 +1,13 @@
 package hanalyst.application.hanalystclub.repository;
 
 import android.annotation.SuppressLint;
-import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.AsyncTask;
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Room;
 import hanalyst.application.hanalystclub.Database.HAnalystDb;
 import hanalyst.application.hanalystclub.Entity.Player;
 

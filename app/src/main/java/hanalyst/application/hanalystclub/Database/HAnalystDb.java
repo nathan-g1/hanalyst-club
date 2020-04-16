@@ -1,9 +1,7 @@
 package hanalyst.application.hanalystclub.Database;
 
-
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
-
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
 import hanalyst.application.hanalystclub.Entity.Player;
 import hanalyst.application.hanalystclub.dao.DaoAccess;
 

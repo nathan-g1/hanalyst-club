@@ -1,11 +1,14 @@
 package hanalyst.application.hanalystclub.lifecycle;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-import hanalyst.application.hanalystclub.R;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeActivity extends Activity {
+import androidx.fragment.app.FragmentTransaction;
+import hanalyst.application.hanalystclub.R;
+import hanalyst.application.hanalystclub.lifecycle.fragments.FragmentHome;
+
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

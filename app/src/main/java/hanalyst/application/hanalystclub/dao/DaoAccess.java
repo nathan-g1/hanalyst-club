@@ -1,15 +1,17 @@
 package hanalyst.application.hanalystclub.dao;
 
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
+
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
 import hanalyst.application.hanalystclub.Entity.Player;
-
+@Dao
 public interface DaoAccess {
     @Insert
     Long insertPlayer(Player player);
