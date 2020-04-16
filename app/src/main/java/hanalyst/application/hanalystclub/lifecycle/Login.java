@@ -20,7 +20,7 @@ public class Login extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO: Goto the next game form before analysis
-                startActivity(new Intent(getApplicationContext(), Analysis.class));
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             }
         });
     }
