@@ -1,10 +1,10 @@
-package hanalyst.application.hanalystclub.Model;
+package hanalyst.application.hanalystclub.Entity;
 
-public class Defense {
+public class Attack {
     private String code, desc;
     private int value;
 
-    public Defense(String code, String desc, int value) {
+    public Attack(String code, String desc, int value) {
         this.code = code;
         this.desc = desc;
         this.value = value;

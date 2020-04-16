@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import hanalyst.application.hanalystclub.Model.Attack;
+import hanalyst.application.hanalystclub.Entity.Attack;
 import hanalyst.application.hanalystclub.R;
 
 public class AttackAdapter extends BaseAdapter {

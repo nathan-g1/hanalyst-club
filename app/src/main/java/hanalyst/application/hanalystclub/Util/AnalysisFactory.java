@@ -6,8 +6,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import hanalyst.application.hanalystclub.Model.Attack;
-import hanalyst.application.hanalystclub.Model.Defense;
+import hanalyst.application.hanalystclub.Entity.Attack;
+import hanalyst.application.hanalystclub.Entity.Defense;
 
 public class AnalysisFactory {
 

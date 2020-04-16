@@ -6,14 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import hanalyst.application.hanalystclub.Adapter.AttackAdapter;
 import hanalyst.application.hanalystclub.Adapter.DefenseAdapter;
-import hanalyst.application.hanalystclub.Model.Attack;
-import hanalyst.application.hanalystclub.Model.Defense;
+import hanalyst.application.hanalystclub.Entity.Attack;
+import hanalyst.application.hanalystclub.Entity.Defense;
 import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.AnalysisFactory;
 
