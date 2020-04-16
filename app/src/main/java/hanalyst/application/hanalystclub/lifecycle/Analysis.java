@@ -1,4 +1,4 @@
-package hanalyst.application.hanalystclub;
+package hanalyst.application.hanalystclub.lifecycle;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,6 +14,7 @@ import hanalyst.application.hanalystclub.Adapter.AttackAdapter;
 import hanalyst.application.hanalystclub.Adapter.DefenseAdapter;
 import hanalyst.application.hanalystclub.Model.Attack;
 import hanalyst.application.hanalystclub.Model.Defense;
+import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.AnalysisFactory;
 
 public class Analysis extends Activity {
