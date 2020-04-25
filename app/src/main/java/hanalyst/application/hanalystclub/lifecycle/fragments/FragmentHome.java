@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO: Call a game form here before going to analysis
-                Dialog dialog = new Dialog(getActivity());
+                final Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.custom_game_form);
                 dialog.show();
 
@@ -62,7 +61,6 @@ public class FragmentHome extends Fragment {
                         }
                     }
                 });
-                ImageButton cancelImgBtn = dialog.findViewById(R.id.button_cancel);
                 ImageButton saveImgBtn = dialog.findViewById(R.id.button_save_game_form);
                 ListView playersList = dialog.findViewById(R.id.list_of_players);
                 Spinner opponentTeam = dialog.findViewById(R.id.spinner);
@@ -70,6 +68,13 @@ public class FragmentHome extends Fragment {
                         android.R.layout.simple_spinner_item, arrayList);
                 opponentTeam.setAdapter(dataAdapter);
                 EditText analystName = dialog.findViewById(R.id.analyst_name);
+                ImageButton cancelImgBtn = dialog.findViewById(R.id.button_cancel);
+                cancelImgBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
 
 
 //                startActivity(new Intent(getActivity(), Analysis.class));
