@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import hanalyst.application.hanalystclub.Adapter.AttackAdapter;
 import hanalyst.application.hanalystclub.Adapter.DefenseAdapter;
@@ -19,6 +22,9 @@ import hanalyst.application.hanalystclub.Util.AnalysisFactory;
 public class Analysis extends Activity {
 
     GridView gridAttack, gridDefence;
+    String currentTime = "";
+    int minute = 0, second = 0;
+    TextView timerTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,7 @@ public class Analysis extends Activity {
 
         gridAttack = findViewById(R.id.grid_attack);
         gridDefence = findViewById(R.id.grid_defence);
+        timerTextView = findViewById(R.id.timer);
         // Attack
         final ArrayList<Attack> attacks = new AnalysisFactory().getAttackList();
         final AttackAdapter attackAdapter = new AttackAdapter(getApplicationContext(), attacks);
@@ -63,5 +70,30 @@ public class Analysis extends Activity {
                 gridDefence.setAdapter(new DefenseAdapter(getApplicationContext(), defence));
             }
         });
+        timer();
     }
+
+    public void timer() {
+        Timer timerObj = new Timer();
+        timerObj.schedule(task, 0, 1000);
+    }
+
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            second++;
+            if (second == 60) {
+                second = 0;
+                minute++;
+            }
+            currentTime = minute + ":" + second;
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    timerTextView.setText(currentTime);
+                }
+            });
+            System.out.println("Hello World");
+        }
+    };
 }
