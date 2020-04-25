@@ -57,7 +57,6 @@ public class Analysis extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int prev = attacks.get(position).getValue();
                 attacks.get(position).setValue(prev + 1);
-                Log.d("val", "" + prev);
                 gridAttack.setAdapter(new AttackAdapter(getApplicationContext(), attacks));
             }
         });
