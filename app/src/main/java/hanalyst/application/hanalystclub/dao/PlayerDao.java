@@ -16,7 +16,7 @@ public interface PlayerDao {
     @Insert
     Long insertPlayer(Player player);
 
-    @Query("SELECT * FROM PLAYER")
+    @Query("SELECT * FROM Player")
     LiveData<List<Player>> getAllPlayers();
 
     @Query("SELECT * FROM Player where id =:playerId")
