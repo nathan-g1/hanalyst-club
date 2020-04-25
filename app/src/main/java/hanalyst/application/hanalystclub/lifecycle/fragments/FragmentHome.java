@@ -62,12 +62,21 @@ public class FragmentHome extends Fragment {
                     }
                 });
                 ImageButton saveImgBtn = dialog.findViewById(R.id.button_save_game_form);
+                saveImgBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO: Do validation here if:
+                        // TODO: right number of players are selected, Analyst is not missing
+                        startActivity(new Intent(getActivity(), Analysis.class));
+                    }
+                });
                 ListView playersList = dialog.findViewById(R.id.list_of_players);
                 Spinner opponentTeam = dialog.findViewById(R.id.spinner);
                 ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
                         android.R.layout.simple_spinner_item, arrayList);
                 opponentTeam.setAdapter(dataAdapter);
                 EditText analystName = dialog.findViewById(R.id.analyst_name);
+
                 ImageButton cancelImgBtn = dialog.findViewById(R.id.button_cancel);
                 cancelImgBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -76,8 +85,6 @@ public class FragmentHome extends Fragment {
                     }
                 });
 
-
-//                startActivity(new Intent(getActivity(), Analysis.class));
             }
         });
     }
