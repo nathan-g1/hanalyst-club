@@ -12,7 +12,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 import hanalyst.application.hanalystclub.Entity.Player;
 @Dao
-public interface DaoAccess {
+public interface PlayerDao {
     @Insert
     Long insertPlayer(Player player);
 
