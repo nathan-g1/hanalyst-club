@@ -43,6 +43,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:onClick="pauseTimer"
             android:text="@string/pause"
             android:textColor="@color/white"
             android:textStyle="bold" />

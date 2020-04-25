@@ -23,8 +23,10 @@ public class Analysis extends Activity {
 
     GridView gridAttack, gridDefence;
     String currentTime = "";
+    Timer timerObj = new Timer();
     int minute = 0, second = 0;
-    TextView timerTextView;
+    TextView timerTextView, pauseText;
+    boolean pause = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class Analysis extends Activity {
         gridAttack = findViewById(R.id.grid_attack);
         gridDefence = findViewById(R.id.grid_defence);
         timerTextView = findViewById(R.id.timer);
+        pauseText = findViewById(R.id.pause);
         // Attack
         final ArrayList<Attack> attacks = new AnalysisFactory().getAttackList();
         final AttackAdapter attackAdapter = new AttackAdapter(getApplicationContext(), attacks);
@@ -74,26 +77,51 @@ public class Analysis extends Activity {
     }
 
     public void timer() {
-        Timer timerObj = new Timer();
-        timerObj.schedule(task, 0, 1000);
+        this.timerObj = new Timer();
+        this.timerObj.schedule(setTask(), 0, 1000);
     }
 
-    TimerTask task = new TimerTask() {
-        @Override
-        public void run() {
-            second++;
-            if (second == 60) {
-                second = 0;
-                minute++;
+    public TimerTask setTask() {
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                second++;
+                if (second == 60) {
+                    second = 0;
+                    minute++;
+                }
+                currentTime = minute + ":" + second;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        timerTextView.setText(currentTime);
+                    }
+                });
             }
-            currentTime = minute + ":" + second;
+        };
+        return task;
+    }
+
+    public void pauseTimer(View v) {
+        pause = !pause;
+        if (pause) {
+            this.timerObj.cancel();
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    timerTextView.setText(currentTime);
+                    String p = "RESUME";
+                    pauseText.setText(p);
                 }
             });
-            System.out.println("Hello World");
+        } else {
+            timer();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    String r = "PAUSE";
+                    pauseText.setText(r);
+                }
+            });
         }
-    };
+    }
 }
