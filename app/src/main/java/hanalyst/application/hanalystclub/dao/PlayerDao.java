@@ -12,11 +12,11 @@ import androidx.room.Query;
 import androidx.room.Update;
 import hanalyst.application.hanalystclub.Entity.Player;
 @Dao
-public interface DaoAccess {
+public interface PlayerDao {
     @Insert
     Long insertPlayer(Player player);
 
-    @Query("SELECT * FROM PLAYER")
+    @Query("SELECT * FROM Player")
     LiveData<List<Player>> getAllPlayers();
 
     @Query("SELECT * FROM Player where id =:playerId")
