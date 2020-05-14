@@ -1,22 +1,20 @@
 package hanalyst.application.hanalystclub.Entity;
 
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 @Entity
 public class Notation {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    private String id;
     private String what;
     private String who;
     private String when;
     private String where;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
