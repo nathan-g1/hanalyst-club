@@ -1,12 +1,10 @@
 package hanalyst.application.hanalystclub.Entity;
 
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 @Entity
 public class Game {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    private String id;
     private String startTime;
     private String endTime;
     private String venue;
@@ -16,11 +14,11 @@ public class Game {
     private String gameType;
     private Team[] playingTeams;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

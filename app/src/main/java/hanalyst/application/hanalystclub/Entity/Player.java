@@ -2,22 +2,20 @@ package hanalyst.application.hanalystclub.Entity;
 
 
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 @Entity
 public class Player {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    private String id;
     private int tNumber;
     private String name;
     private String teamId;
     private String history;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
