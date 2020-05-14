@@ -1,6 +1,9 @@
 package hanalyst.application.hanalystclub.Database;
 
+import android.content.Context;
+
 import androidx.room.Database;
+import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import hanalyst.application.hanalystclub.Entity.Notation;
 import hanalyst.application.hanalystclub.Entity.Player;
@@ -14,5 +17,15 @@ public abstract class HAnalystDb extends RoomDatabase {
     public abstract PlayerDao daoAccess();
     public abstract TeamDao teamDao();
     public abstract NotationDao notationDao();
+
+    private static HAnalystDb instance;
+    public static synchronized HAnalystDb getInstance(Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(context, HAnalystDb.class, "hanalystdb")
+                    .fallbackToDestructiveMigration()
+                    .build();
+        }
+        return instance;
+    }
 }
 
