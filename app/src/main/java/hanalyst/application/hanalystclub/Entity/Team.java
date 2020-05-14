@@ -13,6 +13,16 @@ public class Team {
     private String captain;
     private int players;
 
+    public Team(String id, String coach, String analyst, String since, String name, String captain, int players) {
+        this.id = id;
+        this.coach = coach;
+        this.analyst = analyst;
+        this.since = since;
+        this.name = name;
+        this.captain = captain;
+        this.players = players;
+    }
+
     public String getId() {
         return id;
     }

@@ -11,6 +11,14 @@ public class Player {
     private String teamId;
     private String history;
 
+    public Player(String id, int tNumber, String name, String teamId, String history) {
+        this.id = id;
+        this.tNumber = tNumber;
+        this.name = name;
+        this.teamId = teamId;
+        this.history = history;
+    }
+
     public String getId() {
         return id;
     }

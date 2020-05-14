@@ -10,6 +10,15 @@ public class Notation {
     private String when;
     private String where;
 
+    public Notation(String id, String what, String who, String when, String where) {
+        this.id = id;
+        this.what = what;
+        this.who = who;
+        this.when = when;
+        this.where = where;
+    }
+
+
     public String getId() {
         return id;
     }

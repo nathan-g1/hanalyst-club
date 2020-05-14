@@ -14,6 +14,18 @@ public class Game {
     private String gameType;
     private Team[] playingTeams;
 
+    public Game(String id, String startTime, String endTime, String venue, boolean ha, String referee, Temperature temperature, String gameType, Team[] playingTeams) {
+        this.id = id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.venue = venue;
+        this.ha = ha;
+        this.referee = referee;
+        this.temperature = temperature;
+        this.gameType = gameType;
+        this.playingTeams = playingTeams;
+    }
+
     public String getId() {
         return id;
     }
