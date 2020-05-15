@@ -29,7 +29,7 @@ public class TeamRepository {
     }
 
     public LiveData<List<Team>> getAllTeams() {
-        return teamDao.getAllTeams();
+        return allTeams;
     }
 
     public void update(Team team) {
