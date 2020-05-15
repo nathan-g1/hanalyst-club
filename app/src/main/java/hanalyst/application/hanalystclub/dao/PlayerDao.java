@@ -25,8 +25,10 @@ public interface PlayerDao {
     @Update
     void updatePlayer(Player player);
 
-    @Delete
-    void deletePlayer(Player player);
+    @Query("DELETE FROM Player where id =:playerId")
+    void deletePlayer(String playerId);
 
+    @Query("DELETE FROM Player")
+    void deleteAllPlayers();
 
 }
