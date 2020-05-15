@@ -1,10 +1,11 @@
 package hanalyst.application.hanalystclub.Entity;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class Team {
-
+    @PrimaryKey
     private String id;
     private String coach;
     private String analyst;

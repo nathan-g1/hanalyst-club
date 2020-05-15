@@ -2,9 +2,11 @@ package hanalyst.application.hanalystclub.Entity;
 
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class Player {
+    @PrimaryKey
     private String id;
     private int tNumber;
     private String name;
