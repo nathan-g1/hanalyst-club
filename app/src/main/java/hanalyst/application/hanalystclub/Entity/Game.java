@@ -1,11 +1,13 @@
 package hanalyst.application.hanalystclub.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Game {
     @PrimaryKey
+    @NonNull
     private String id;
     private String startTime;
     private String endTime;

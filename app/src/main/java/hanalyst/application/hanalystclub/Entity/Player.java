@@ -1,12 +1,14 @@
 package hanalyst.application.hanalystclub.Entity;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Player {
     @PrimaryKey
+    @NonNull
     private String id;
     private int tNumber;
     private String name;
