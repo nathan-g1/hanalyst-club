@@ -19,7 +19,7 @@ public interface TeamDao {
     LiveData<List<Team>> getAllTeams();
 
     @Query("SELECT * FROM Team WHERE id =:teamId")
-    LiveData<List<Team>> getATeam(String teamId);
+    LiveData<Team> getATeam(String teamId);
 
     @Update
     void updateTeam(Team team);
