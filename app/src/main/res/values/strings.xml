@@ -4,7 +4,7 @@
     <string name="welcome_to_hanalyst">Welcome to HAnalyst!</string>
     <string name="title_activity_analysis">Analysis</string>
     <string name="email">test@test.com</string>
-    <string name="pass">password</string>
+    <string name="pass">pass</string>
     <string name="label_email">Email</string>
     <string name="label_password">Password</string>
     <string name="number_on_row_item">3</string>
@@ -24,4 +24,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tap_message">Tap on players from the list</string>
     <string name="select_message">Select Players For This Game</string>
+    <string name="welcome_user">\"Welcome \"</string>
+    <string name="incorrect_pass">Incorrect password</string>
+    <string name="server_not_responding">Server not responding.</string>
+    <string name="user_not_found">This email is not found. Check again.</string>
+    <string name="problem_in_network">There is a problem in your Network.</string>
 </resources>
