@@ -7,15 +7,15 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 import hanalyst.application.hanalystclub.Entity.Team;
 import hanalyst.application.hanalystclub.repository.TeamRepository;
 
-public class TeamViewModel extends ViewModel {
-    public TeamRepository repository;
-    public LiveData<List<Team>> allTeams;
+public class TeamViewModel extends AndroidViewModel {
+    private TeamRepository repository;
+    private LiveData<List<Team>> allTeams;
 
-    public TeamViewModel(Application application) {
+    public TeamViewModel(@NonNull Application application) {
+        super(application);
         repository = new TeamRepository(application);
         allTeams = repository.getAllTeams();
     }
