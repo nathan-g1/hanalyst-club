@@ -24,6 +24,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/team_name_display"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dip"
@@ -48,6 +49,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/coach_name_display"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dip"
@@ -70,6 +72,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/captain_name_display"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dip"
@@ -92,6 +95,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/number_of_players_display"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dip"
@@ -138,10 +142,11 @@
             android:textSize="15sp"
             android:text="Players" />
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/players_in_team"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            tools:listitem="@layout/team_item"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -154,5 +159,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_plus"
-        app:tint="#FFFFFF" />
+        app:tint="#FFFFFF"
+        tools:ignore="VectorDrawableCompat" />
 </FrameLayout>

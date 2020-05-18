@@ -51,16 +51,16 @@ public class FragmentHome extends Fragment {
                 dialog.setContentView(R.layout.custom_game_form);
                 dialog.show();
 
-                PlayerRepository playerRepository = new PlayerRepository(getActivity());
-                final ArrayList<String> arrayList = new ArrayList<>();
-                playerRepository.getPlayers().observe(getActivity(), new Observer<List<Player>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Player> players) {
-                        for (Player player: players) {
-                            arrayList.add(player.getName());
-                        }
-                    }
-                });
+//                PlayerRepository playerRepository = new PlayerRepository(getActivity());
+//                final ArrayList<String> arrayList = new ArrayList<>();
+//                playerRepository.getPlayers().observe(getActivity(), new Observer<List<Player>>() {
+//                    @Override
+//                    public void onChanged(@Nullable List<Player> players) {
+//                        for (Player player: players) {
+//                            arrayList.add(player.getName());
+//                        }
+//                    }
+//                });
                 ImageButton saveImgBtn = dialog.findViewById(R.id.button_save_game_form);
                 saveImgBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -72,9 +72,9 @@ public class FragmentHome extends Fragment {
                 });
                 ListView playersList = dialog.findViewById(R.id.list_of_players);
                 Spinner opponentTeam = dialog.findViewById(R.id.spinner);
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
-                        android.R.layout.simple_spinner_item, arrayList);
-                opponentTeam.setAdapter(dataAdapter);
+//                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+//                        android.R.layout.simple_spinner_item, arrayList);
+//                opponentTeam.setAdapter(dataAdapter);
                 EditText analystName = dialog.findViewById(R.id.analyst_name);
 
                 ImageButton cancelImgBtn = dialog.findViewById(R.id.button_cancel);

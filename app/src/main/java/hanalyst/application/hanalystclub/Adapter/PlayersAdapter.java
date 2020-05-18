@@ -21,4 +21,6 @@ public class PlayersAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return 0;
     }
+
+
 }

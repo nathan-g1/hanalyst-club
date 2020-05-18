@@ -14,12 +14,14 @@ import hanalyst.application.hanalystclub.Entity.Team;
 import hanalyst.application.hanalystclub.dao.NotationDao;
 import hanalyst.application.hanalystclub.dao.PlayerDao;
 import hanalyst.application.hanalystclub.dao.TeamDao;
+import hanalyst.application.hanalystclub.dao.UserDao;
 
 @Database(entities = {Player.class, Team.class, Notation.class}, version = 2, exportSchema = false)
 public abstract class HAnalystDb extends RoomDatabase {
     public abstract PlayerDao playerDao();
     public abstract TeamDao teamDao();
     public abstract NotationDao notationDao();
+    public abstract UserDao userDao();
 
     private static HAnalystDb instance;
     public static synchronized HAnalystDb getInstance(Context context) {

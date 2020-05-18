@@ -21,8 +21,11 @@ android {
 dependencies {
     def lifecycle_version = "2.2.0"
     def room_version = "2.2.5"
-    def lifecycle_version_arch = "1.1.1"
+    def retrofit_library = "2.4.0"
 
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_library"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_library"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"

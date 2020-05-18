@@ -83,16 +83,16 @@ public class Analysis extends Activity {
                 dialog.setContentView(R.layout.player_list_who);
                 dialog.show();
 
-                PlayerRepository playerRepository = new PlayerRepository(getApplicationContext());
+//                PlayerRepository playerRepository = new PlayerRepository(getApplicationContext());
                 final ArrayList<String> arrayList = new ArrayList<>();
-                playerRepository.getPlayers().observe(this, new Observer<List<Player>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Player> players) {
-                        for (Player player: players) {
-                            arrayList.add(player.getName());
-                        }
-                    }
-                });
+//                playerRepository.getPlayers().observe(null, new Observer<List<Player>>() {
+//                    @Override
+//                    public void onChanged(@Nullable List<Player> players) {
+//                        for (Player player : players) {
+//                            arrayList.add(player.getName());
+//                        }
+//                    }
+//                });
 
                 gridDefence.setAdapter(new DefenseAdapter(getApplicationContext(), defence));
             }
