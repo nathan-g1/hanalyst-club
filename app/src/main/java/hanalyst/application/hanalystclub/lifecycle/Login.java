@@ -1,6 +1,5 @@
 package hanalyst.application.hanalystclub.lifecycle;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
-import androidx.lifecycle.ViewModelStoreOwner;
 import hanalyst.application.hanalystclub.Entity.ClubUser;
 import hanalyst.application.hanalystclub.Network.API;
 import hanalyst.application.hanalystclub.R;
@@ -24,17 +20,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Login extends Activity {
+public class Login extends AppCompatActivity {
     Button loginBtn;
     TextView email, password;
-    UserViewModel userViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         // userViewModel
-        userViewModel = new ViewModelProvider(Login.this).get(UserViewModel.class);
+        final UserViewModel viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         loginBtn = findViewById(R.id.login_button);
