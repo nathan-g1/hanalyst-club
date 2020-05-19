@@ -1,16 +1,12 @@
 package hanalyst.application.hanalystclub.lifecycle.fragments;
 
-import android.app.Dialog;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -133,7 +129,14 @@ public class FragmentTeam extends Fragment {
 
     private void addTeam() {
         double i = Math.random();
-        Team x = new Team("5e3dbcf08b1e76683bd9afd4" + i, "Andinet Mekuria", "Shibeshi", "1990-01-01T00:00:00.000Z", "Mekelle", "Rambo", 17);
+        Team x = new Team(
+                "5e3dbcf08b1e76683bd9afd4" + i,
+                "Andinet Mekuria",
+                "Shibeshi",
+                "1990-01-01T00:00:00.000Z",
+                "Mekelle",
+                "Rambo",
+                17);
         teamViewModel.insertTeam(x);
     }
 
