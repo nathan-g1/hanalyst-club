@@ -11,12 +11,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import hanalyst.application.hanalystclub.Entity.Notation;
 import hanalyst.application.hanalystclub.Entity.Player;
 import hanalyst.application.hanalystclub.Entity.Team;
+import hanalyst.application.hanalystclub.Entity.User;
 import hanalyst.application.hanalystclub.dao.NotationDao;
 import hanalyst.application.hanalystclub.dao.PlayerDao;
 import hanalyst.application.hanalystclub.dao.TeamDao;
 import hanalyst.application.hanalystclub.dao.UserDao;
 
-@Database(entities = {Player.class, Team.class, Notation.class}, version = 2, exportSchema = false)
+@Database(entities = {Player.class, Team.class, Notation.class, User.class}, version = 3, exportSchema = false)
 public abstract class HAnalystDb extends RoomDatabase {
     public abstract PlayerDao playerDao();
     public abstract TeamDao teamDao();
