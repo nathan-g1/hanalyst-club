@@ -28,6 +28,11 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        SharedPreferenceHAn sharedPreferenceHAn = new SharedPreferenceHAn(Login.this);
+        if (!sharedPreferenceHAn.getTeamId().equals("null")) {
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+
         // userViewModel
         final UserViewModel viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         email = findViewById(R.id.email);
