@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import hanalyst.application.hanalystclub.Entity.ClubUser;
+import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
 import hanalyst.application.hanalystclub.Network.API;
 import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;

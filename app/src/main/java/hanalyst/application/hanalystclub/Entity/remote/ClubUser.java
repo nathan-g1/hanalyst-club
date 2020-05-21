@@ -1,4 +1,4 @@
-package hanalyst.application.hanalystclub.Entity;
+package hanalyst.application.hanalystclub.Entity.remote;
 
 public class ClubUser {
     private String id;

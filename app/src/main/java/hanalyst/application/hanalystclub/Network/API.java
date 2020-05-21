@@ -1,6 +1,6 @@
 package hanalyst.application.hanalystclub.Network;
 
-import hanalyst.application.hanalystclub.Entity.ClubUser;
+import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
