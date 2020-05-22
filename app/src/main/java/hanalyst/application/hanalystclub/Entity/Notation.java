@@ -13,21 +13,23 @@ public class Notation {
     private String who;
     private String when;
     private String where;
+    private String gameId;
 
-    public Notation(String id, String what, String who, String when, String where) {
+    public Notation(@NonNull String id, String what, String who, String when, String where, String gameId) {
         this.id = id;
         this.what = what;
         this.who = who;
         this.when = when;
         this.where = where;
+        this.gameId = gameId;
     }
 
-
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
@@ -61,5 +63,13 @@ public class Notation {
 
     public void setWhere(String where) {
         this.where = where;
+    }
+
+    public String getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(String gameId) {
+        this.gameId = gameId;
     }
 }
