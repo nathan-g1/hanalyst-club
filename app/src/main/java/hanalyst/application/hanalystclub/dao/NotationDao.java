@@ -21,6 +21,9 @@ public interface NotationDao {
     @Query("SELECT * FROM Notation WHERE id =:notationId")
     LiveData<List<Notation>> getNotationById(String notationId);
 
+    @Query("SELECT * FROM Notation WHERE id =:gameId")
+    LiveData<List<Notation>> getNotationsInAGame(String gameId);
+
     @Update
     void updateNotation(Notation notation);
 
