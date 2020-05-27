@@ -27,17 +27,25 @@
             android:layout_height="56dp"
             android:hint="@string/referee_name" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <RadioGroup
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:gravity="left"
-            android:text="@string/home_or_away" />
+            android:id="@+id/home_or_away_radio_group"
+            android:orientation="horizontal"
+            android:checkedButton="@+id/sound" >
 
-        <Spinner
-            android:id="@+id/spinner_home_or_away"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sound"
+                android:text="@string/home" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/vibration"
+                android:text="@string/away" />
+        </RadioGroup>
 
         <TextView
             android:layout_width="match_parent"
