@@ -35,4 +35,10 @@
     <string name="problem_in_network">There is a problem in your Network.</string>
     <string name="start_analysis">Start Analysis</string>
     <string name="start_taking_analysis">Start Taking Analysis</string>
+    <string name="change_password">Change Password</string>
+    <string name="manage_your_pin">Manage your pin</string>
+    <string name="change_language">Change Language</string>
+    <string name="select_your_preferred_language">Select your preferred language</string>
+    <string name="logout">Sign out</string>
+    <string name="long_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 </resources>
