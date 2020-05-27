@@ -8,8 +8,6 @@ import java.util.List;
 import androidx.lifecycle.LiveData;
 import hanalyst.application.hanalystclub.Database.HAnalystDb;
 import hanalyst.application.hanalystclub.Entity.Notation;
-import hanalyst.application.hanalystclub.Entity.Notation;
-import hanalyst.application.hanalystclub.dao.NotationDao;
 import hanalyst.application.hanalystclub.dao.NotationDao;
 
 public class NotationRepository {
