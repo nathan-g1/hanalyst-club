@@ -5,9 +5,9 @@ public class RPlayer {
     private int tnumber;
     private String name;
     private String teamId;
-    private String history;
+    private History history;
 
-    public RPlayer(String id, int tnumber, String name, String teamId, String history) {
+    public RPlayer(String id, int tnumber, String name, String teamId, History history) {
         this.id = id;
         this.tnumber = tnumber;
         this.name = name;
@@ -15,7 +15,7 @@ public class RPlayer {
         this.history = history;
     }
 
-    public RPlayer(int tnumber, String name, String teamId, String history) {
+    public RPlayer(int tnumber, String name, String teamId, History history) {
         this.tnumber = tnumber;
         this.name = name;
         this.teamId = teamId;
@@ -54,11 +54,11 @@ public class RPlayer {
         this.teamId = teamId;
     }
 
-    public String getHistory() {
+    public History getHistory() {
         return history;
     }
 
-    public void setHistory(String history) {
+    public void setHistory(History history) {
         this.history = history;
     }
 }
