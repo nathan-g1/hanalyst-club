@@ -26,4 +26,7 @@ public interface TeamDao {
 
     @Delete
     void deleteTeam(Team team);
+
+    @Query("DELETE FROM Team")
+    void deleteAllTeams();
 }
