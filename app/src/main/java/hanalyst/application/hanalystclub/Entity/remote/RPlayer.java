@@ -2,21 +2,21 @@ package hanalyst.application.hanalystclub.Entity.remote;
 
 public class RPlayer {
     private String id;
-    private int tNumber;
+    private int tnumber;
     private String name;
     private String teamId;
     private String history;
 
-    public RPlayer(String id, int tNumber, String name, String teamId, String history) {
+    public RPlayer(String id, int tnumber, String name, String teamId, String history) {
         this.id = id;
-        this.tNumber = tNumber;
+        this.tnumber = tnumber;
         this.name = name;
         this.teamId = teamId;
         this.history = history;
     }
 
-    public RPlayer(int tNumber, String name, String teamId, String history) {
-        this.tNumber = tNumber;
+    public RPlayer(int tnumber, String name, String teamId, String history) {
+        this.tnumber = tnumber;
         this.name = name;
         this.teamId = teamId;
         this.history = history;
@@ -31,11 +31,11 @@ public class RPlayer {
     }
 
     public int getTNumber() {
-        return tNumber;
+        return tnumber;
     }
 
     public void setTNumber(int tNumber) {
-        this.tNumber = tNumber;
+        this.tnumber = tNumber;
     }
 
     public String getName() {
