@@ -8,21 +8,24 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+import hanalyst.application.hanalystclub.Entity.GameType;
 import hanalyst.application.hanalystclub.Entity.Notation;
 import hanalyst.application.hanalystclub.Entity.Player;
 import hanalyst.application.hanalystclub.Entity.Team;
 import hanalyst.application.hanalystclub.Entity.User;
+import hanalyst.application.hanalystclub.dao.GameTypeDao;
 import hanalyst.application.hanalystclub.dao.NotationDao;
 import hanalyst.application.hanalystclub.dao.PlayerDao;
 import hanalyst.application.hanalystclub.dao.TeamDao;
 import hanalyst.application.hanalystclub.dao.UserDao;
 
-@Database(entities = {Player.class, Team.class, Notation.class, User.class}, version = 3, exportSchema = false)
+@Database(entities = {Player.class, Team.class, Notation.class, User.class, GameType.class}, version = 4, exportSchema = false)
 public abstract class HAnalystDb extends RoomDatabase {
     public abstract PlayerDao playerDao();
     public abstract TeamDao teamDao();
     public abstract NotationDao notationDao();
     public abstract UserDao userDao();
+    public abstract GameTypeDao gameTypeDao();
 
     private static HAnalystDb instance;
     public static synchronized HAnalystDb getInstance(Context context) {
