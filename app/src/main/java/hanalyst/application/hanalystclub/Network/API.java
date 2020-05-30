@@ -5,12 +5,14 @@ import java.util.List;
 import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
 import hanalyst.application.hanalystclub.Entity.remote.RGameType;
 import hanalyst.application.hanalystclub.Entity.remote.RPlayer;
+import hanalyst.application.hanalystclub.Entity.remote.RTeam;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface API {
@@ -24,6 +26,9 @@ public interface API {
     @GET("players?")
     Call<List<RPlayer>> getPlayerInATeam(@Query("filter") String param);
 
+    @GET("teams/{teamId}/members")
+    Call<List<RPlayer>> getMembersInATeam(@Path("teamId") String teamId);
+
     @FormUrlEncoded
     @POST("players")
     Call<RPlayer> addAPlayerToATeam(
@@ -31,5 +36,8 @@ public interface API {
             @Field("tnumber") int tNumber,
             @Field("teamId") String teamId
     );
+
+    @GET("teams/{teamId}")
+    Call<RTeam> getTeamData(@Path("teamId") String teamId);
 
 }
