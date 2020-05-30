@@ -1,24 +1,14 @@
 package hanalyst.application.hanalystclub.Entity.remote;
 
 class History {
-    private String id;
     private String gameId;
     private String description;
     private String[] playedInTeams;
 
-    public History(String id, String gameId, String description, String[] playedInTeams) {
-        this.id = id;
+    public History(String gameId, String description, String[] playedInTeams) {
         this.gameId = gameId;
         this.description = description;
         this.playedInTeams = playedInTeams;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getGameId() {
