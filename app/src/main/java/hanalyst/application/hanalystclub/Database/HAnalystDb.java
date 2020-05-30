@@ -33,7 +33,7 @@ public abstract class HAnalystDb extends RoomDatabase {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     HAnalystDb.class, "hanalystdb")
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallBack)
+//                    .addCallback(roomCallBack)
                     .build();
         }
         return instance;
