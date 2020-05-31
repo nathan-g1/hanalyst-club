@@ -12,6 +12,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -22,10 +23,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import hanalyst.application.hanalystclub.Adapter.PlayersAdapter;
 import hanalyst.application.hanalystclub.Adapter.TeamAdapter;
 import hanalyst.application.hanalystclub.Entity.Player;
 import hanalyst.application.hanalystclub.Entity.Team;
-import hanalyst.application.hanalystclub.Entity.remote.RGameType;
+import hanalyst.application.hanalystclub.Entity.remote.History;
 import hanalyst.application.hanalystclub.Entity.remote.RPlayer;
 import hanalyst.application.hanalystclub.Network.API;
 import hanalyst.application.hanalystclub.R;
@@ -33,7 +35,6 @@ import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
 import hanalyst.application.hanalystclub.lifecycle.HomeActivity;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.PlayerViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.TeamViewModel;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,32 +76,41 @@ public class FragmentTeam extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         final TeamAdapter teamAdapter = new TeamAdapter();
+        final PlayersAdapter playersAdapter = new PlayersAdapter();
 
-        recyclerView.setAdapter(teamAdapter);
-        teamViewModel.getAllTeams().observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
+        recyclerView.setAdapter(playersAdapter);
+        playerViewModel.getAllPlayers().observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
             @Override
-            public void onChanged(List<Team> teams) {
-                teamAdapter.setTeams(teams);
+            public void onChanged(List<Player> players) {
+                playersAdapter.setPlayers(players);
                 Toast.makeText(getActivity(), "onChanged", Toast.LENGTH_SHORT).show();
             }
         });
-        Team currentTeam = teamViewModel.getATeam("5e3dbcf08b1e76683bd9afd4");
+
         TextView textViewTeamName = view.findViewById(R.id.team_name_display);
         TextView textViewCoachName = view.findViewById(R.id.coach_name_display);
         TextView textViewCaptainName = view.findViewById(R.id.captain_name_display);
+        TextView textViewAnalystName = view.findViewById(R.id.analyst_name_display);
         TextView textViewNumberOfPlayers = view.findViewById(R.id.number_of_players_display);
-//        textViewTeamName.setText(currentTeam.getName());
-//        textViewCoachName.setText(currentTeam.getCoach());
-//        textViewCaptainName.setText(currentTeam.getCaptain());
-//        textViewNumberOfPlayers.setText(currentTeam.getPlayers());
-
         fb = view.findViewById(R.id.fab_add_players);
-//        fb.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addTeam();
-//            }
-//        });
+
+        teamViewModel.getAllTeams().observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
+            @Override
+            public void onChanged(List<Team> teams) {
+                for (Team team : teams) {
+                    if (team.getId().equals(teamId)) {
+                        textViewTeamName.setText(team.getName());
+                        textViewCoachName.setText(team.getCoach());
+                        textViewCaptainName.setText(team.getCaptain());
+                        textViewAnalystName.setText(team.getAnalyst());
+                        textViewNumberOfPlayers.setText(String.valueOf(team.getPlayers()));
+                        return;
+                    }
+                }
+            }
+        });
+
+
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,13 +125,15 @@ public class FragmentTeam extends Fragment {
 //                final TextView analystName = dialog.findViewById(R.id.input_field_analyst_name);
                 final TextView playerName = dialog.findViewById(R.id.input_field_player_name);
                 final TextView tShirtNumber = dialog.findViewById(R.id.input_field_t_shirt_number);
+                Toolbar toolbar = dialog.findViewById(R.id.toolbar);
+//                TODO: Back icon for the dialog and dismisses the dialog
+//                toolbar.
 
                 Button save = dialog.findViewById(R.id.save_new_player);
                 Button cancel = dialog.findViewById(R.id.cancel_adding_player);
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        updateTeam(teamName.toString(), captainName.toString(), coachName.toString(), analystName.toString());
                         addPlayer(Integer.parseInt(tShirtNumber.getText().toString()), playerName.getText().toString(), teamId);
                         dialog.dismiss();
                     }
@@ -155,7 +167,7 @@ public class FragmentTeam extends Fragment {
                             res.getTNumber(),
                             res.getName(),
                             res.getTeamId(),
-                            res.getHistory()));
+                            res.getHistory() != null ? saveHistory(res.getHistory()) : ""));
                 }
             }
 
@@ -167,20 +179,7 @@ public class FragmentTeam extends Fragment {
 
     }
 
-    private void addTeam() {
-        double i = Math.random();
-        Team x = new Team(
-                "5e3dbcf08b1e76683bd9afd4" + i,
-                "Andinet Mekuria",
-                "Shibeshi",
-                "1990-01-01T00:00:00.000Z",
-                "Mekelle",
-                "Rambo",
-                17);
-        teamViewModel.insertTeam(x);
-    }
-
-    private void updateTeam(String teamName, String captainName, String coachName, String analystName) {
-
+    private String saveHistory(History history) {
+        return String.valueOf(history.getId());
     }
 }
