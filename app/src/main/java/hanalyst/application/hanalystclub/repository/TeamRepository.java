@@ -13,6 +13,7 @@ import hanalyst.application.hanalystclub.dao.TeamDao;
 public class TeamRepository {
     private TeamDao teamDao;
     private LiveData<List<Team>> allTeams;
+    private Team team;
 
     public TeamRepository(Application application) {
         HAnalystDb hAnalystDb = HAnalystDb.getInstance(application);
@@ -24,8 +25,9 @@ public class TeamRepository {
         new InsertTeamAsyncTask(teamDao).execute(team);
     }
 
-    public LiveData<Team> getTeam(String teamId) {
-        return teamDao.getATeam(teamId);
+    public Team getTeam(String teamId) {
+        new GetTeamWithIdAsyncTask(teamDao, teamId);
+        return team;
     }
 
     public LiveData<List<Team>> getAllTeams() {
@@ -55,7 +57,24 @@ public class TeamRepository {
         }
     }
 
-    private class UpdateTeamAsyncTask extends AsyncTask<Team, Void, Void>{
+    private class GetTeamWithIdAsyncTask extends AsyncTask<Team, Void, Void> {
+        private TeamDao teamDao;
+        private String teamId;
+
+        public GetTeamWithIdAsyncTask(TeamDao teamDao, String teamId) {
+            this.teamDao = teamDao;
+            this.teamId = teamId;
+        }
+
+
+        @Override
+        protected Void doInBackground(Team... teams) {
+            team = teamDao.getATeam(teamId);
+            return null;
+        }
+    }
+
+    private class UpdateTeamAsyncTask extends AsyncTask<Team, Void, Void> {
 
         private TeamDao teamDao;
 
