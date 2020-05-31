@@ -1,6 +1,12 @@
 package hanalyst.application.hanalystclub.Entity.remote;
 
-class History {
+import androidx.annotation.NonNull;
+import androidx.room.PrimaryKey;
+
+public class History {
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private int id;
     private String gameId;
     private String description;
     private String[] playedInTeams;
@@ -9,6 +15,10 @@ class History {
         this.gameId = gameId;
         this.description = description;
         this.playedInTeams = playedInTeams;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getGameId() {
