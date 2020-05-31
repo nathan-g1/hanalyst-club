@@ -40,4 +40,7 @@ public interface API {
     @GET("teams/{teamId}")
     Call<RTeam> getTeamData(@Path("teamId") String teamId);
 
+    @GET("teams")
+    Call<List<RTeam>> getAllTeams();
+
 }
