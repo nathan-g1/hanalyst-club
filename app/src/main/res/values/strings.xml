@@ -42,4 +42,8 @@
     <string name="logout">Sign out</string>
     <string name="long_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="new_player_information">New Player Information</string>
+    <string name="start_game">Start Game</string>
+    <string name="field_should_not_be_empty">Field should not be empty</string>
+    <string name="password_length_should_be_greater_than_6">Password length should be greater than 6</string>
+    <string name="field_should_be_selected">Field should be selected</string>
 </resources>
