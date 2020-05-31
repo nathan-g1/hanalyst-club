@@ -23,7 +23,7 @@
     <string name="referee_name">Referee name</string>
     <string name="select_game_type">Select game type</string>
     <string name="venue">Venue</string>
-    <string name="home_or_away">Home or Away</string>
+    <string name="away">Away</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select_playing_players">Select playing players</string>
@@ -41,4 +41,5 @@
     <string name="select_your_preferred_language">Select your preferred language</string>
     <string name="logout">Sign out</string>
     <string name="long_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="new_player_information">New Player Information</string>
 </resources>
