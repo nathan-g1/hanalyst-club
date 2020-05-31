@@ -29,7 +29,7 @@ public class TeamViewModel extends AndroidViewModel {
     }
 
     public Team getATeam(String teamId) {
-        return repository.getTeam(teamId).getValue();
+        return repository.getTeam(teamId);
     }
 
     public LiveData<List<Team>> getAllTeams() {
