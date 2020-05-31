@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import hanalyst.application.hanalystclub.Entity.Player;
 import hanalyst.application.hanalystclub.Entity.Team;
 import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
+import hanalyst.application.hanalystclub.Entity.remote.History;
 import hanalyst.application.hanalystclub.Entity.remote.RPlayer;
 import hanalyst.application.hanalystclub.Entity.remote.RTeam;
 import hanalyst.application.hanalystclub.Network.API;
@@ -56,7 +57,6 @@ public class Login extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Goto the next game form before analysis
                 login();
             }
         });
@@ -122,13 +122,15 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<List<RPlayer>> call, Response<List<RPlayer>> response) {
                 if (response.isSuccessful()) {
                     List<RPlayer> listOfPlayersFromRemote = response.body();
-                    for (RPlayer rPlayer : listOfPlayersFromRemote) {
-                        playerViewModel.insertPlayer(new Player(
-                                rPlayer.getId(),
-                                rPlayer.getTNumber(),
-                                rPlayer.getName(),
-                                rPlayer.getTeamId(),
-                                rPlayer.getHistory()));;
+                    if (listOfPlayersFromRemote != null) {
+                        for (RPlayer rPlayer : listOfPlayersFromRemote) {
+                            playerViewModel.insertPlayer(new Player(
+                                    rPlayer.getId(),
+                                    rPlayer.getTNumber(),
+                                    rPlayer.getName(),
+                                    rPlayer.getTeamId(),
+                                    rPlayer.getHistory() != null ? saveHistory(rPlayer.getHistory()) : ""));
+                        }
                     }
                 }
             }
@@ -160,5 +162,10 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, R.string.problem_in_network, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private String saveHistory(History history) {
+        // TODO: May be save history locally as well
+        return String.valueOf(history.getId());
     }
 }
