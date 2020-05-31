@@ -141,24 +141,28 @@ public class Login extends AppCompatActivity {
             }
         });
         // fetch team data and save
-        Call<RTeam> call1 = api.getTeamData(teamId);
-        call1.enqueue(new Callback<RTeam>() {
+        Call<List<RTeam>> call1 = api.getAllTeams();
+        call1.enqueue(new Callback<List<RTeam>>() {
             @Override
-            public void onResponse(Call<RTeam> call, Response<RTeam> response) {
+            public void onResponse(Call<List<RTeam>> call, Response<List<RTeam>> response) {
                 if (response.isSuccessful()) {
-                    RTeam rTeam = response.body();
-                    teamViewModel.insertTeam(new Team(rTeam.getId(),
-                            rTeam.getCoach(),
-                            rTeam.getAnalyst(),
-                            rTeam.getSince(),
-                            rTeam.getName(),
-                            rTeam.getCaptain(),
-                            rTeam.getPlayers()));
+                    List<RTeam> allTeams = response.body();
+                    for (RTeam rTeam : allTeams) {
+                        if (!rTeam.getId().equals(sharedPreferenceHAn.getTeamId())) {
+                            teamViewModel.insertTeam(new Team(rTeam.getId(),
+                                    rTeam.getCoach(),
+                                    rTeam.getAnalyst(),
+                                    rTeam.getSince(),
+                                    rTeam.getName(),
+                                    rTeam.getCaptain(),
+                                    rTeam.getPlayers()));
+                        }
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<RTeam> call, Throwable t) {
+            public void onFailure(Call<List<RTeam>> call, Throwable t) {
                 Toast.makeText(Login.this, R.string.problem_in_network, Toast.LENGTH_SHORT).show();
             }
         });
