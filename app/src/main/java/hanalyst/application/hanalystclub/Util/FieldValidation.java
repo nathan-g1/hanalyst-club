@@ -3,6 +3,7 @@ package hanalyst.application.hanalystclub.Util;
 import android.content.Context;
 import android.text.InputType;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import hanalyst.application.hanalystclub.R;
 
@@ -41,6 +42,10 @@ public class FieldValidation {
     public Boolean validateWithCustomMessage(EditText textField, String customMessage) {
         textField.setError(customMessage);
         return false;
+    }
+
+    public Boolean selectedItemPosition(Spinner spinner) {
+        return spinner.getSelectedItemPosition() > 0;
     }
 
 }
