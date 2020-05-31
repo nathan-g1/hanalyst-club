@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.InputType;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import hanalyst.application.hanalystclub.R;
 
@@ -48,4 +49,7 @@ public class FieldValidation {
         return spinner.getSelectedItemPosition() > 0;
     }
 
+    public void setMessageForSpinner(Spinner spinner) {
+        ((TextView) spinner.getSelectedItem()).setError(context.getString(R.string.field_should_be_selected));
+    }
 }
