@@ -46,10 +46,8 @@ public class FieldValidation {
     }
 
     public Boolean selectedItemPosition(Spinner spinner) {
-        return spinner.getSelectedItemPosition() > 0;
-    }
-
-    public void setMessageForSpinner(Spinner spinner) {
-        ((TextView) spinner.getSelectedItem()).setError(context.getString(R.string.field_should_be_selected));
+        if (spinner.getSelectedItemPosition() > 0) return true;
+        ((TextView) spinner.getSelectedView()).setError(context.getString(R.string.field_should_be_selected));
+        return false;
     }
 }
