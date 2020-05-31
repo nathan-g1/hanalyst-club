@@ -29,7 +29,7 @@ public class FragmentGameForm extends Fragment {
 
     TeamViewModel teamViewModel;
     GameTypeViewModel gameTypeViewModel;
-    String currentTeamName;
+    String teamId;
 
     public FragmentGameForm() {
     }
@@ -63,7 +63,7 @@ public class FragmentGameForm extends Fragment {
 
         // get currently signed in Team
         SharedPreferenceHAn sharedPreferenceHAn = new SharedPreferenceHAn(getContext());
-        currentTeamName = sharedPreferenceHAn.getTeamId();
+        teamId = sharedPreferenceHAn.getTeamId();
 
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
         gameTypeViewModel = new ViewModelProvider(this).get(GameTypeViewModel.class);
@@ -73,13 +73,13 @@ public class FragmentGameForm extends Fragment {
 
         teamViewModel.getAllTeams().observe(getViewLifecycleOwner(), treams -> {
             for (Team team : treams) {
-                if (!team.getName().equals(currentTeamName)) opponentTeamsName.add(team.getName());
+                if (!team.getId().equals(teamId)) opponentTeamsName.add(team.getName());
             }
         });
 
-        ArrayAdapter<String> a = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opponentTeamsName);
-        a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        opponentTeamSpinner.setAdapter(a);
+        ArrayAdapter<String> opponentTeamsArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opponentTeamsName);
+        opponentTeamsArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        opponentTeamSpinner.setAdapter(opponentTeamsArrayAdapter);
 
         List<String> gameTypes = new ArrayList<>();
         gameTypes.add("Select One");
