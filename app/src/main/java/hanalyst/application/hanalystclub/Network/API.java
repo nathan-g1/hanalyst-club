@@ -2,7 +2,9 @@ package hanalyst.application.hanalystclub.Network;
 
 import java.util.List;
 
+import hanalyst.application.hanalystclub.Entity.Temperature;
 import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
+import hanalyst.application.hanalystclub.Entity.remote.RGame;
 import hanalyst.application.hanalystclub.Entity.remote.RGameType;
 import hanalyst.application.hanalystclub.Entity.remote.RPlayer;
 import hanalyst.application.hanalystclub.Entity.remote.RTeam;
@@ -42,5 +44,18 @@ public interface API {
 
     @GET("teams")
     Call<List<RTeam>> getAllTeams();
+
+    @FormUrlEncoded
+    @POST("games")
+    Call<RGame> saveGame(
+            @Field("startTime") String startTime,
+            @Field("endTime") String endTime,
+            @Field("venue") String venue,
+            @Field("ha") boolean ha,
+            @Field("temperature") Temperature temperature,
+            @Field("location") String location,
+            @Field("gameType") String gameType,
+            @Field("playingTeams[]") List<String> playingTeams
+    );
 
 }
