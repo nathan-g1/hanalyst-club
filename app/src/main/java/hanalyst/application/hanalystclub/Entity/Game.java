@@ -1,8 +1,12 @@
 package hanalyst.application.hanalystclub.Entity;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+import hanalyst.application.hanalystclub.Database.RoomConverter;
 
 @Entity
 public class Game {
@@ -14,11 +18,13 @@ public class Game {
     private String venue;
     private boolean ha;
     private String referee;
+    @TypeConverters(RoomConverter.class)
     private Temperature temperature;
     private String gameType;
-    private Team[] playingTeams;
+    @TypeConverters(RoomConverter.class)
+    private String[] playingTeams;
 
-    public Game(String id, String startTime, String endTime, String venue, boolean ha, String referee, Temperature temperature, String gameType, Team[] playingTeams) {
+    public Game(String id, String startTime, String endTime, String venue, boolean ha, String referee, Temperature temperature, String gameType, String[] playingTeams) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -94,11 +100,11 @@ public class Game {
         this.gameType = gameType;
     }
 
-    public Team[] getPlayingTeams() {
+    public String[] getPlayingTeams() {
         return playingTeams;
     }
 
-    public void setPlayingTeams(Team[] playingTeams) {
+    public void setPlayingTeams(String[] playingTeams) {
         this.playingTeams = playingTeams;
     }
 }

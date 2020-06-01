@@ -10,6 +10,7 @@ import hanalyst.application.hanalystclub.Entity.remote.RPlayer;
 import hanalyst.application.hanalystclub.Entity.remote.RTeam;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -52,7 +53,8 @@ public interface API {
             @Field("endTime") String endTime,
             @Field("venue") String venue,
             @Field("ha") boolean ha,
-            @Field("temperature") Temperature temperature,
+            @Field("referee") String referee,
+            @Field("temperature") String temperature,
             @Field("location") String location,
             @Field("gameType") String gameType,
             @Field("playingTeams[]") List<String> playingTeams

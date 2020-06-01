@@ -19,4 +19,20 @@ public class Temperature implements Serializable {
         this.scaleType = scaleType;
         this.value = value;
     }
+
+    public String getScaleType() {
+        return scaleType;
+    }
+
+    public void setScaleType(String scaleType) {
+        this.scaleType = scaleType;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
 }

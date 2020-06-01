@@ -1,7 +1,5 @@
 package hanalyst.application.hanalystclub.Entity.remote;
 
-import hanalyst.application.hanalystclub.Entity.Team;
-import hanalyst.application.hanalystclub.Entity.Temperature;
 
 public class RGame {
     private String id;
@@ -10,12 +8,11 @@ public class RGame {
     private String venue;
     private boolean ha;
     private String referee;
-    private Temperature temperature;
+    private String temperature;
     private String gameType;
-    private Team[] playingTeams;
+    private String[] playingTeams;
 
-    public RGame(String id, String startTime, String endTime, String venue, boolean ha, String referee, Temperature temperature, String gameType, Team[] playingTeams) {
-        this.id = id;
+    public RGame(String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.venue = venue;
@@ -26,7 +23,8 @@ public class RGame {
         this.playingTeams = playingTeams;
     }
 
-    public RGame(String startTime, String endTime, String venue, boolean ha, String referee, Temperature temperature, String gameType, Team[] playingTeams) {
+    public RGame(String id, String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams) {
+        this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
         this.venue = venue;
@@ -85,11 +83,11 @@ public class RGame {
         this.referee = referee;
     }
 
-    public Temperature getTemperature() {
+    public String getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Temperature temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 
@@ -101,11 +99,11 @@ public class RGame {
         this.gameType = gameType;
     }
 
-    public Team[] getPlayingTeams() {
+    public String[] getPlayingTeams() {
         return playingTeams;
     }
 
-    public void setPlayingTeams(Team[] playingTeams) {
+    public void setPlayingTeams(String[] playingTeams) {
         this.playingTeams = playingTeams;
     }
 
