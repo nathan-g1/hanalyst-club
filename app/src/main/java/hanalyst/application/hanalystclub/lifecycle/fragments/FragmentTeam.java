@@ -83,7 +83,6 @@ public class FragmentTeam extends Fragment {
             @Override
             public void onChanged(List<Player> players) {
                 playersAdapter.setPlayers(players);
-                Toast.makeText(getActivity(), "onChanged", Toast.LENGTH_SHORT).show();
             }
         });
 
