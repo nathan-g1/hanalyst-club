@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,7 +177,7 @@ public class FragmentGameForm extends Fragment {
                             game1.getPlayingTeams()
                     ));
                     startActivity(new Intent(getActivity(), Analysis.class));
-                } {
+                } else  {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         Toast.makeText(getContext(), jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
