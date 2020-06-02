@@ -1,5 +1,6 @@
 package hanalyst.application.hanalystclub.lifecycle.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +30,10 @@ import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.FieldValidation;
 import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
 import hanalyst.application.hanalystclub.Util.TimeManager;
+import hanalyst.application.hanalystclub.lifecycle.Analysis;
 import hanalyst.application.hanalystclub.lifecycle.HomeActivity;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameTypeViewModel;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.TeamViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +46,7 @@ public class FragmentGameForm extends Fragment {
 
     TeamViewModel teamViewModel;
     GameTypeViewModel gameTypeViewModel;
+    GameViewModel gameViewModel;
     String teamId;
     boolean ha;
     TimeManager tM;
@@ -56,7 +60,7 @@ public class FragmentGameForm extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((HomeActivity) getActivity()).setTitle("Start Game");
+        ((HomeActivity) getActivity()).setTitle("Game Information");
         View view = inflater.inflate(R.layout.fragment_game_form, container, false);
         EditText venueEditText = view.findViewById(R.id.venue);
         EditText refereeNameEditText = view.findViewById(R.id.referee_name);
@@ -82,6 +86,7 @@ public class FragmentGameForm extends Fragment {
 
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
         gameTypeViewModel = new ViewModelProvider(this).get(GameTypeViewModel.class);
+        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
         opponentTeamsName = new ArrayList<>();
         opponentTeamsName.add("Select One");
@@ -161,7 +166,18 @@ public class FragmentGameForm extends Fragment {
                 Object j = response.body();
                 if (response.isSuccessful()) {
                     RGame game1 = response.body();
-                    Toast.makeText(getContext(), "WORKING", Toast.LENGTH_SHORT).show();
+                    gameViewModel.insertGame(new Game(
+                            game1.getId(),
+                            game1.getStartTime(),
+                            game1.getEndTime(),
+                            game1.getVenue(),
+                            game1.isHa(),
+                            game1.getReferee(),
+                            new Temperature(game1.getTemperature().split(" ")[0], Double.parseDouble(game1.getTemperature().split(" ")[1])),
+                            game1.getGameType(),
+                            game1.getPlayingTeams()
+                    ));
+                    startActivity(new Intent(getActivity(), Analysis.class));
                 } {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
