@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import hanalyst.application.hanalystclub.Entity.Player;
 import hanalyst.application.hanalystclub.Entity.Team;
+import hanalyst.application.hanalystclub.Entity.User;
 import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
 import hanalyst.application.hanalystclub.Entity.remote.History;
 import hanalyst.application.hanalystclub.Entity.remote.RPlayer;
@@ -36,6 +37,8 @@ public class Login extends AppCompatActivity {
     SharedPreferenceHAn sharedPreferenceHAn;
     PlayerViewModel playerViewModel;
     TeamViewModel teamViewModel;
+    UserViewModel userViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,7 @@ public class Login extends AppCompatActivity {
         final UserViewModel viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         playerViewModel = new ViewModelProvider(this).get(PlayerViewModel.class);
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
 
         email = findViewById(R.id.email);
@@ -91,6 +95,8 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     // check if the password is similar from the user input
                     if (response.body().getPassword().equals(passwordVal)) {
+                        ClubUser clubUser = response.body();
+                        userViewModel.insertUser(new User(clubUser.getId(), clubUser.getName(), clubUser.getEmail(), clubUser.getPassword(), clubUser.getBio(), clubUser.getExperience(), clubUser.getTeamId()));
                         Toast.makeText(Login.this, getString(R.string.welcome_user) + response.body().getName() + "!", Toast.LENGTH_SHORT).show();
                         sharedPreferenceHAn.setTeamId(response.body().getTeamId());
                         addTeamAndPlayersFromRemote();
