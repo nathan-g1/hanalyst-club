@@ -5,8 +5,9 @@ import android.preference.PreferenceManager;
 
 public class SharedPreferenceHAn {
     Context context;
-    private static final String TEAM_ID  = "TEAM_ID";
-    public SharedPreferenceHAn(Context context){
+    private static final String TEAM_ID = "TEAM_ID";
+
+    public SharedPreferenceHAn(Context context) {
         this.context = context;
     }
 
@@ -16,5 +17,9 @@ public class SharedPreferenceHAn {
 
     public String getTeamId() {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(TEAM_ID, "null");
+    }
+
+    public void signOut() {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
     }
 }
