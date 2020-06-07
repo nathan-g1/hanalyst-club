@@ -26,8 +26,8 @@ public class UserViewModel extends AndroidViewModel {
         userRepository.updateUser(user);
     }
 
-    public User getLoggedInUser() {
-        return userLiveData.getValue();
+    public LiveData<User> getLoggedInUser() {
+        return userLiveData;
     }
 
     public void deleteUser(User user) {
