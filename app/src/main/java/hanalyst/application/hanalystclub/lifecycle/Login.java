@@ -1,5 +1,6 @@
 package hanalyst.application.hanalystclub.lifecycle;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -80,6 +81,10 @@ public class Login extends AppCompatActivity {
 
         API api = retrofit.create(API.class);
         Call<ClubUser> call = api.getUser("{\"where\": {\"email\": \"" + emailVal + "\"}}");
+        final ProgressDialog progressDialog = new ProgressDialog(Login.this);
+        progressDialog.setMessage("signing in...");
+        progressDialog.setTitle("SignIn");
+        progressDialog.show();
         call.enqueue(new Callback<ClubUser>() {
             @Override
             public void onResponse(Call<ClubUser> call, Response<ClubUser> response) {
@@ -89,19 +94,24 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(Login.this, getString(R.string.welcome_user) + response.body().getName() + "!", Toast.LENGTH_SHORT).show();
                         sharedPreferenceHAn.setTeamId(response.body().getTeamId());
                         addTeamAndPlayersFromRemote();
+                        progressDialog.dismiss();
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     } else {
+                        progressDialog.dismiss();
                         Toast.makeText(Login.this, R.string.incorrect_pass, Toast.LENGTH_SHORT).show();
                     }
                 } else if (response.code() / 500 == 1) {
+                    progressDialog.dismiss();
                     Toast.makeText(Login.this, R.string.server_not_responding, Toast.LENGTH_SHORT).show();
                 } else {
+                    progressDialog.dismiss();
                     Toast.makeText(Login.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ClubUser> call, Throwable t) {
+                progressDialog.dismiss();
                 Toast.makeText(Login.this, R.string.problem_in_network, Toast.LENGTH_SHORT).show();
             }
         });
