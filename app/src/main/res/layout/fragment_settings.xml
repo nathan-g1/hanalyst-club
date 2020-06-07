@@ -32,6 +32,7 @@
                 app:civ_border_width="2dp" />
 
             <TextView
+                android:id="@+id/analyst_name_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -40,6 +41,7 @@
                 android:textSize="30sp" />
 
             <TextView
+                android:id="@+id/club_name_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -48,6 +50,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
+                android:id="@+id/analyst_bio_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
