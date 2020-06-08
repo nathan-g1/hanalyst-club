@@ -2,6 +2,8 @@ package hanalyst.application.hanalystclub.lifecycle.viewmodels;
 
 import android.app.Application;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -10,7 +12,7 @@ import hanalyst.application.hanalystclub.repository.UserRepository;
 
 public class UserViewModel extends AndroidViewModel {
     private UserRepository userRepository;
-    private LiveData<User> userLiveData;
+    private LiveData<List<User>> userLiveData;
 
     public UserViewModel(@NonNull Application application) {
         super(application);
@@ -26,7 +28,7 @@ public class UserViewModel extends AndroidViewModel {
         userRepository.updateUser(user);
     }
 
-    public LiveData<User> getLoggedInUser() {
+    public LiveData<List<User>> getLoggedInUser() {
         return userLiveData;
     }
 
