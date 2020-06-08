@@ -1,5 +1,7 @@
 package hanalyst.application.hanalystclub.dao;
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -14,7 +16,7 @@ public interface UserDao {
     Long insertUser(User user);
 
     @Query("SELECT * FROM User")
-    LiveData<User> getCurrentUser();
+    LiveData<List<User>> getCurrentUser();
 
     @Update
     void updatePlayer(User user);
