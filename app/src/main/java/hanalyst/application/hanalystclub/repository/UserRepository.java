@@ -3,6 +3,8 @@ package hanalyst.application.hanalystclub.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import hanalyst.application.hanalystclub.Database.HAnalystDb;
 import hanalyst.application.hanalystclub.Entity.User;
@@ -10,7 +12,7 @@ import hanalyst.application.hanalystclub.dao.UserDao;
 
 public class UserRepository {
     private UserDao userDao;
-    private LiveData<User> userLiveData;
+    private LiveData<List<User>> userLiveData;
 
     public UserRepository(Application application) {
         HAnalystDb hAnalystDb = HAnalystDb.getInstance(application);
@@ -22,7 +24,7 @@ public class UserRepository {
         new InsertUserAsync(userDao).execute(user);
     }
 
-    public LiveData<User> getUser() {
+    public LiveData<List<User>> getUser() {
         return userLiveData;
     }
 
