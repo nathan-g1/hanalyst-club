@@ -1,28 +1,21 @@
 package hanalyst.application.hanalystclub.lifecycle;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
-import android.app.Activity;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,6 +40,8 @@ public class Analysis extends AppCompatActivity {
     TextView timerTextView, pauseText;
     boolean pause = false;
     PlayerViewModel playerViewModel;
+    int zone = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,17 +89,61 @@ public class Analysis extends AppCompatActivity {
 
                 dialog.setContentView(R.layout.player_list_who);
 
-                if (dialog.getWindow() != null){
+                if (dialog.getWindow() != null) {
                     dialog.getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 }
 
                 RecyclerView recyclerView = dialog.findViewById(R.id.players_list);
 
                 final PlayersAdapter playersAdapter = new PlayersAdapter();
+                playersAdapter.setOnItemClickListener(new PlayersAdapter.ClickListener() {
+                    @Override
+                    public void onItemClick(int playerPosition, View v) {
+                        final Dialog dialog2 = new Dialog(Analysis.this);
+                        dialog2.setContentView(R.layout.zone_where);
+                        Button button1 = dialog2.findViewById(R.id.btn1);
+                        Button button2 = dialog2.findViewById(R.id.btn2);
+                        Button button3 = dialog2.findViewById(R.id.btn3);
+                        Button button4 = dialog2.findViewById(R.id.btn4);
+                        Button button5 = dialog2.findViewById(R.id.btn5);
+                        Button button6 = dialog2.findViewById(R.id.btn6);
+                        Button button7 = dialog2.findViewById(R.id.btn7);
+                        Button button8 = dialog2.findViewById(R.id.btn8);
+                        Button button9 = dialog2.findViewById(R.id.btn9);
+                        Button button10 = dialog2.findViewById(R.id.btn10);
+                        Button button11 = dialog2.findViewById(R.id.btn11);
+                        Button button12 = dialog2.findViewById(R.id.btn12);
+                        ArrayList<Button> arrayList = new ArrayList<>();
+
+                        dialog2.show();
+                        arrayList.add(button1);
+                        arrayList.add(button2);
+                        arrayList.add(button3);
+                        arrayList.add(button4);
+                        arrayList.add(button5);
+                        arrayList.add(button6);
+                        arrayList.add(button7);
+                        arrayList.add(button8);
+                        arrayList.add(button9);
+                        arrayList.add(button10);
+                        arrayList.add(button11);
+                        arrayList.add(button12);
+
+                        for (Button button : arrayList) {
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    zone = arrayList.indexOf(button) + 1;
+//                                    saveNotation(defence.get(position), zone, playerPosition, currentTime);
+                                    Toast.makeText(Analysis.this, zone + " is zone", Toast.LENGTH_SHORT).show();
+                                    dialog2.dismiss();
+                                }
+                            });
+                        }
+//                        zoneDialog.show();
+                    }
+                });
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                recyclerView.setAdapter(playersAdapter);
-
-
 
 
                 recyclerView.setAdapter(playersAdapter);
@@ -170,8 +209,15 @@ public class Analysis extends AppCompatActivity {
         }
     }
 
-    public void saveNotation() {
+    private void saveNotation(Defense defense, int zone, int playerPosition, String currentTime) {
 
     }
 
+    private void saveNotation(Attack attack, int zone, int playerPosition, String currentTime) {
+
+    }
+
+    private boolean saveNotation() {
+        return false;
+    }
 }
