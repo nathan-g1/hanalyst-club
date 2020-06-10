@@ -22,6 +22,7 @@
         <activity android:name=".lifecycle.HomeActivity" />
         <activity
             android:name=".lifecycle.Analysis"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:label="@string/title_activity_analysis" />
     </application>
 
