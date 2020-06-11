@@ -47,4 +47,7 @@
     <string name="password_length_should_be_greater_than_6">Password length should be greater than 6</string>
     <string name="field_should_be_selected">Field should be selected</string>
     <string name="are_you_sure">Are you sure you want to sign out?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="select_zone">Select Zone</string>
 </resources>
