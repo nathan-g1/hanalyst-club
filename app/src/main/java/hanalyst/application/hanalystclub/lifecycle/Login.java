@@ -172,6 +172,8 @@ public class Login extends AppCompatActivity {
                                     rTeam.getName(),
                                     rTeam.getCaptain(),
                                     rTeam.getPlayers()));
+                        } else {
+                            sharedPreferenceHAn.setTeamName(rTeam.getName());
                         }
                     }
                 }
