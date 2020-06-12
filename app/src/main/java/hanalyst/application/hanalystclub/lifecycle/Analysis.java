@@ -200,6 +200,20 @@ public class Analysis extends AppCompatActivity {
         }
     }
 
+    private void atEffectiveness(ArrayList<Attack> attacks, TextView effAttack) {
+        int totalShots = attacks.get(9).getValue() + attacks.get(8).getValue();
+        attEffectiveness =  ((attacks.get(9).getValue() * 100) * 1.0) / (double) totalShots;
+        String s = "ATT:EFF " + attEffectiveness + "%";
+        effAttack.setText(s);
+    }
+
+    private void deEffectiveness(ArrayList<Defense> defenses, TextView effDefence) {
+        int totalShots = defenses.get(9).getValue() + defenses.get(8).getValue();
+        defEffectiveness =  ((defenses.get(9).getValue() * 100) * 1.0) / (double) totalShots;
+        String s = "DFN:EFF " + defEffectiveness + "%";
+        effDefence.setText(s);
+    }
+
     private void saveNotation(Defense defense, int zone, int playerPosition, String currentTime) {
 
     }
