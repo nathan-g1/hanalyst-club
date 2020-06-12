@@ -43,13 +43,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragmentGameForm extends Fragment {
 
-    TeamViewModel teamViewModel;
-    GameTypeViewModel gameTypeViewModel;
-    GameViewModel gameViewModel;
-    String teamId;
-    boolean ha;
-    TimeManager tM;
-    List<String> opponentTeamsName;
+    private TeamViewModel teamViewModel;
+    private GameTypeViewModel gameTypeViewModel;
+    private GameViewModel gameViewModel;
+    private SharedPreferenceHAn sharedPreferenceHAn;
+    private String teamId;
+    private boolean ha;
+    private TimeManager tM;
+    private List<String> opponentTeamsName;
 
     public FragmentGameForm() {
     }
@@ -80,7 +81,7 @@ public class FragmentGameForm extends Fragment {
         });
 
         // get currently signed in Team
-        SharedPreferenceHAn sharedPreferenceHAn = new SharedPreferenceHAn(getContext());
+        sharedPreferenceHAn = new SharedPreferenceHAn(getContext());
         teamId = sharedPreferenceHAn.getTeamId();
 
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
@@ -90,8 +91,8 @@ public class FragmentGameForm extends Fragment {
         opponentTeamsName = new ArrayList<>();
         opponentTeamsName.add("Select One");
 
-        teamViewModel.getAllTeams().observe(getViewLifecycleOwner(), treams -> {
-            for (Team team : treams) {
+        teamViewModel.getAllTeams().observe(getViewLifecycleOwner(), teams -> {
+            for (Team team : teams) {
                 if (!team.getId().equals(teamId)) opponentTeamsName.add(team.getName());
             }
         });
@@ -149,7 +150,8 @@ public class FragmentGameForm extends Fragment {
 
         List<String> playingTeams = new ArrayList<>();
         playingTeams.add(teamId);
-        playingTeams.add(opponentTeamsName.get(opponentTeamSpinner.getSelectedItemPosition() - 1));
+        playingTeams.add(opponentTeamSpinner.getSelectedItem().toString());
+        sharedPreferenceHAn.setPlayingTeams(sharedPreferenceHAn.getTeamName() + " vs " + opponentTeamSpinner.getSelectedItem().toString());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://hanalyst.herokuapp.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -177,7 +179,7 @@ public class FragmentGameForm extends Fragment {
                             game1.getPlayingTeams()
                     ));
                     startActivity(new Intent(getActivity(), Analysis.class));
-                } else  {
+                } else {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         Toast.makeText(getContext(), jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
