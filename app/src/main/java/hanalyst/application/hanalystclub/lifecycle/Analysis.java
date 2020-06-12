@@ -28,6 +28,7 @@ import hanalyst.application.hanalystclub.Entity.Defense;
 import hanalyst.application.hanalystclub.Entity.Player;
 import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.AnalysisFactory;
+import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.PlayerViewModel;
 
 public class Analysis extends AppCompatActivity {
@@ -36,20 +37,20 @@ public class Analysis extends AppCompatActivity {
     String currentTime = "";
     Timer timerObj = new Timer();
     int minute = 0, second = 0;
-    TextView timerTextView, pauseText, effAttack, effDefence;
+    TextView timerTextView, pauseText, effAttack, effDefence, teamsDisplay;
     boolean pause = false;
     PlayerViewModel playerViewModel;
     int zone = 0;
     double attEffectiveness = 0;
     double defEffectiveness = 0;
-
+    private SharedPreferenceHAn sharedPreferenceHAn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
 
-
+        sharedPreferenceHAn = new SharedPreferenceHAn(Analysis.this);
         playerViewModel = new ViewModelProvider(this).get(PlayerViewModel.class);
         gridAttack = findViewById(R.id.grid_attack);
         gridDefence = findViewById(R.id.grid_defence);
@@ -57,6 +58,8 @@ public class Analysis extends AppCompatActivity {
         pauseText = findViewById(R.id.pause);
         effAttack = findViewById(R.id.textView_attack_effectiveness);
         effDefence = findViewById(R.id.textView_defence_effectiveness);
+        teamsDisplay = findViewById(R.id.textView_playing_teams);
+        teamsDisplay.setText(sharedPreferenceHAn.getPlayingTeams());
 
         // Attack
         final ArrayList<Attack> attacks = new AnalysisFactory().getAttackList();
@@ -280,14 +283,14 @@ public class Analysis extends AppCompatActivity {
 
     private void atEffectiveness(ArrayList<Attack> attacks, TextView effAttack) {
         int totalShots = attacks.get(9).getValue() + attacks.get(8).getValue();
-        attEffectiveness =  ((attacks.get(9).getValue() * 100) * 1.0) / (double) totalShots;
+        attEffectiveness = ((attacks.get(9).getValue() * 100) * 1.0) / (double) totalShots;
         String s = "ATT:EFF " + attEffectiveness + "%";
         effAttack.setText(s);
     }
 
     private void deEffectiveness(ArrayList<Defense> defenses, TextView effDefence) {
         int totalShots = defenses.get(9).getValue() + defenses.get(8).getValue();
-        defEffectiveness =  ((defenses.get(9).getValue() * 100) * 1.0) / (double) totalShots;
+        defEffectiveness = ((defenses.get(9).getValue() * 100) * 1.0) / (double) totalShots;
         String s = "DFN:EFF " + defEffectiveness + "%";
         effDefence.setText(s);
     }
