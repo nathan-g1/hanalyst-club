@@ -72,7 +72,6 @@ public class Analysis extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int prev = defence.get(position).getValue();
-                defence.get(position).setValue(prev + 1);
                 final Dialog dialog = new Dialog(Analysis.this, R.style.FullHeightDialog);
 
                 dialog.setContentView(R.layout.player_list_who);
@@ -83,11 +82,12 @@ public class Analysis extends AppCompatActivity {
 
                 RecyclerView recyclerView = dialog.findViewById(R.id.players_list);
 
-                final PlayersAdapter playersAdapter = new PlayersAdapter();
-                playersAdapter.setOnItemClickListener(new PlayersAdapter.ClickListener() {
+                final PlayersAdapterWithOnClick playersAdapterWithOnClick = new PlayersAdapterWithOnClick();
+                playersAdapterWithOnClick.setOnItemClickListener(new PlayersAdapterWithOnClick.ClickListener() {
                     @Override
                     public void onItemClick(int playerPosition, View v) {
-                        final Dialog dialog2 = new Dialog(Analysis.this);
+                        final Dialog dialog2 = new Dialog(Analysis.this, R.style.FullHeightDialog);
+                        dialog2.setTitle(getString(R.string.select_zone));
                         dialog2.setContentView(R.layout.zone_where);
                         Button button1 = dialog2.findViewById(R.id.btn1);
                         Button button2 = dialog2.findViewById(R.id.btn2);
@@ -122,23 +122,26 @@ public class Analysis extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     zone = arrayList.indexOf(button) + 1;
-//                                    saveNotation(defence.get(position), zone, playerPosition, currentTime);
-                                    Toast.makeText(Analysis.this, zone + " is zone", Toast.LENGTH_SHORT).show();
-//                                    dialog2.dismiss();
+                                    saveNotation(defence.get(position), zone, playerPosition, currentTime);
+                                    Toast.makeText(Analysis.this, zone + " is zone " + defence.get(position).getDesc(), Toast.LENGTH_SHORT).show();
+                                    defence.get(position).setValue(prev + 1);
+                                    gridDefence.setAdapter(new DefenseAdapter(getApplicationContext(), defence));
+                                    deEffectiveness(defence, effDefence);
+                                    dialog.dismiss();
+                                    dialog2.dismiss();
                                 }
                             });
                         }
-//                        zoneDialog.show();
                     }
                 });
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
 
-                recyclerView.setAdapter(playersAdapter);
+                recyclerView.setAdapter(playersAdapterWithOnClick);
                 playerViewModel.getAllPlayers().observe(Analysis.this, new Observer<List<Player>>() {
                     @Override
                     public void onChanged(List<Player> players) {
-                        playersAdapter.setPlayers(players);
+                        playersAdapterWithOnClick.setPlayers(players);
                     }
                 });
                 dialog.show();
