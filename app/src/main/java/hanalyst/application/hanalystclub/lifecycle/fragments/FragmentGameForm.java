@@ -48,7 +48,7 @@ public class FragmentGameForm extends Fragment {
     private GameViewModel gameViewModel;
     private SharedPreferenceHAn sharedPreferenceHAn;
     private String teamId;
-    private boolean ha;
+    private boolean ha = true;
     private TimeManager tM;
     private List<String> opponentTeamsName;
 
@@ -72,11 +72,7 @@ public class FragmentGameForm extends Fragment {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.game_home) {
-                    ha = true;
-                } else {
-                    ha = false;
-                }
+                ha = checkedId == R.id.game_home;
             }
         });
 
