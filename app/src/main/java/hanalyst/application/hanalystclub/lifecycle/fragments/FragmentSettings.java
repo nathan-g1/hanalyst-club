@@ -1,6 +1,8 @@
 package hanalyst.application.hanalystclub.lifecycle.fragments;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,8 +28,13 @@ import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
 import hanalyst.application.hanalystclub.lifecycle.HomeActivity;
 import hanalyst.application.hanalystclub.lifecycle.Login;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameTypeViewModel;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameViewModel;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.PlayerViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.TeamViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.UserViewModel;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.NotationViewModel;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,10 +45,14 @@ public class FragmentSettings extends Fragment {
         // Required empty public constructor
     }
 
-    UserViewModel userViewModel;
-    TeamViewModel teamViewModel;
-    String teamId;
-    SharedPreferenceHAn sharedPreferenceHAn;
+    private UserViewModel userViewModel;
+    private TeamViewModel teamViewModel;
+    private NotationViewModel notationViewModel;
+    private GameTypeViewModel gameTypeViewModel;
+    private GameViewModel gameViewModel;
+    private PlayerViewModel playerViewModel;
+    private String teamId;
+    private SharedPreferenceHAn sharedPreferenceHAn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +64,11 @@ public class FragmentSettings extends Fragment {
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
+        notationViewModel = new ViewModelProvider(this).get(NotationViewModel.class);
+        gameTypeViewModel = new ViewModelProvider(this).get(GameTypeViewModel.class);
+        playerViewModel = new ViewModelProvider(this).get(PlayerViewModel.class);
+        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
+
         final List<User> list = new ArrayList<>();
         final User[] ux = {null};
         final String[] d = {""};
@@ -62,7 +78,7 @@ public class FragmentSettings extends Fragment {
                 for (User user : users) {
                     d[0] = user.getName();
                     System.out.println(user.getName() + " 234234 " + user.getEmail());
-                    list.add(new User(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getBio(), user.getExperience(),user.getTeamId()));
+                    list.add(new User(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getBio(), user.getExperience(), user.getTeamId()));
                 }
             }
         });
@@ -106,8 +122,13 @@ public class FragmentSettings extends Fragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                gameTypeViewModel.deleteAllGameType();
+                                userViewModel.deleteAllUser();
+                                teamViewModel.deleteAllTeams();
+                                notationViewModel.deleteAllNotations();
+                                playerViewModel.deleteAllPlayers();
+                                gameViewModel.deleteAllGames();
                                 sharedPreferenceHAn.signOut();
-                                // TODO: DELETE ALL TABLES FROM DB
                                 startActivity(new Intent(getActivity(), Login.class));
                             }
                         });
@@ -119,8 +140,19 @@ public class FragmentSettings extends Fragment {
                             }
                         });
                 alertDialog.show();
-        }
+            }
         });
 
+    }
+
+    private void clearPreferences() {
+        try {
+            // clearing app data
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec("pm clear " + getContext().getPackageName());
+            startActivity(new Intent(getActivity(), Login.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
