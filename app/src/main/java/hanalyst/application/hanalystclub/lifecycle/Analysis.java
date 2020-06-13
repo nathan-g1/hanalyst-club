@@ -279,6 +279,9 @@ public class Analysis extends AppCompatActivity {
                 }
             });
         }
+        String message = pause ? "Pause" : "Resume";
+        Snackbar.make(v, message, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
     private void atEffectiveness(ArrayList<Attack> attacks, TextView effAttack) {
