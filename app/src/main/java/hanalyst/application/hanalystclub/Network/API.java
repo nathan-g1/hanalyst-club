@@ -6,6 +6,7 @@ import hanalyst.application.hanalystclub.Entity.Temperature;
 import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
 import hanalyst.application.hanalystclub.Entity.remote.RGame;
 import hanalyst.application.hanalystclub.Entity.remote.RGameType;
+import hanalyst.application.hanalystclub.Entity.remote.RNotation;
 import hanalyst.application.hanalystclub.Entity.remote.RPlayer;
 import hanalyst.application.hanalystclub.Entity.remote.RTeam;
 import okhttp3.ResponseBody;
@@ -60,4 +61,13 @@ public interface API {
             @Field("playingTeams[]") List<String> playingTeams
     );
 
+    @FormUrlEncoded
+    @POST("notations")
+    Call<RNotation> saveNotation(
+            @Field("what") String what,
+            @Field("who") String who,
+            @Field("where") String where,
+            @Field("when") String when,
+            @Field("gameId") String gameId
+    );
 }
