@@ -17,6 +17,8 @@
             android:id="@+id/venue"
             android:layout_width="match_parent"
             android:paddingTop="10dp"
+            android:singleLine="true"
+            android:nextFocusDown="@id/referee_name"
             android:layout_height="56dp"
             android:hint="@string/venue" />
 
@@ -24,6 +26,8 @@
             android:id="@+id/referee_name"
             android:layout_width="match_parent"
             android:paddingTop="10dp"
+            android:singleLine="true"
+            android:nextFocusDown="@id/game_home"
             android:layout_height="56dp"
             android:hint="@string/referee_name" />
 
