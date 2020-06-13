@@ -41,6 +41,10 @@ public class PlayersAdapterWithOnClick extends RecyclerView.Adapter<PlayersAdapt
         notifyDataSetChanged();
     }
 
+    public List<Player> getGivenPlayers() {
+        return this.players;
+    }
+
     class PlayerHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView playerName;
         private TextView tNumber;
