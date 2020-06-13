@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -25,11 +27,22 @@ import hanalyst.application.hanalystclub.Adapter.DefenseAdapter;
 import hanalyst.application.hanalystclub.Adapter.PlayersAdapterWithOnClick;
 import hanalyst.application.hanalystclub.Entity.Attack;
 import hanalyst.application.hanalystclub.Entity.Defense;
+import hanalyst.application.hanalystclub.Entity.Game;
+import hanalyst.application.hanalystclub.Entity.Notation;
 import hanalyst.application.hanalystclub.Entity.Player;
+import hanalyst.application.hanalystclub.Entity.remote.RNotation;
+import hanalyst.application.hanalystclub.Network.API;
 import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.AnalysisFactory;
 import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameViewModel;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.NotationViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.PlayerViewModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Analysis extends AppCompatActivity {
 
@@ -44,6 +57,7 @@ public class Analysis extends AppCompatActivity {
     double attEffectiveness = 0;
     double defEffectiveness = 0;
     private SharedPreferenceHAn sharedPreferenceHAn;
+    private List<Player> allPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,9 +132,9 @@ public class Analysis extends AppCompatActivity {
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    allPlayers = playersAdapterWithOnClick.getGivenPlayers();
                                     zone = arrayList.indexOf(button) + 1;
-                                    saveNotation(attacks.get(position), zone, playerPosition, currentTime);
-                                    Toast.makeText(Analysis.this, zone + " is zone " + attacks.get(position).getDesc(), Toast.LENGTH_SHORT).show();
+                                    saveNotation(attacks.get(position).getDesc(), zone, playerPosition, currentTime);
                                     attacks.get(position).setValue(prev + 1);
                                     gridAttack.setAdapter(new AttackAdapter(getApplicationContext(), attacks));
                                     atEffectiveness(attacks, effDefence);
@@ -202,9 +216,9 @@ public class Analysis extends AppCompatActivity {
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    allPlayers = playersAdapterWithOnClick.getGivenPlayers();
                                     zone = arrayList.indexOf(button) + 1;
-                                    saveNotation(defence.get(position), zone, playerPosition, currentTime);
-                                    Toast.makeText(Analysis.this, zone + " is zone " + defence.get(position).getDesc(), Toast.LENGTH_SHORT).show();
+                                    saveNotation(defence.get(position).getDesc(), zone, playerPosition, currentTime);
                                     defence.get(position).setValue(prev + 1);
                                     gridDefence.setAdapter(new DefenseAdapter(getApplicationContext(), defence));
                                     deEffectiveness(defence, effDefence);
@@ -298,15 +312,33 @@ public class Analysis extends AppCompatActivity {
         effDefence.setText(s);
     }
 
-    private void saveNotation(Defense defense, int zone, int playerPosition, String currentTime) {
+    private void saveNotation(String what, int zone, int playerPosition, String currentTime) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hanalyst.herokuapp.com/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        API api = retrofit.create(API.class);
+        Call<RNotation> rNotationCall = api.saveNotation(what, allPlayers.get(playerPosition).getName(), String.valueOf(zone), currentTime, sharedPreferenceHAn.getTeamId());
+        rNotationCall.enqueue(new Callback<RNotation>() {
+            @Override
+            public void onResponse(Call<RNotation> call, Response<RNotation> response) {
+                RNotation rNotation = response.body();
+                if (response.isSuccessful()) {
+                    NotationViewModel notationViewModel = new ViewModelProvider(Analysis.this).get(NotationViewModel.class);
+                    notationViewModel.insertNotation(new Notation(rNotation.getId(),
+                            rNotation.getWhat(),
+                            rNotation.getWho(),
+                            rNotation.getWhen(),
+                            rNotation.getWhere(),
+                            rNotation.getGameId()));
+                }
+            }
 
-    }
+            @Override
+            public void onFailure(Call<RNotation> call, Throwable t) {
+                Toast.makeText(Analysis.this, R.string.problem_in_network, Toast.LENGTH_SHORT).show();
+            }
+        });
 
-    private void saveNotation(Attack attack, int zone, int playerPosition, String currentTime) {
-
-    }
-
-    private boolean saveNotation() {
-        return false;
     }
 }
