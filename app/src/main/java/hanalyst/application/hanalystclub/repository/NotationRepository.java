@@ -24,6 +24,10 @@ public class NotationRepository {
         new InsertNotationAsyncTask(notationDao).execute(notation);
     }
 
+    public LiveData<List<Notation>> getAllNotations() {
+        return allNotations;
+    }
+
     public void updateNotation(Notation notation) {
         new UpdateNotationAsyncTask(notationDao).execute(notation);
     }
