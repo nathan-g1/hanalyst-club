@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -25,11 +29,14 @@ import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.PlayerViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.TeamViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.UserViewModel;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 public class Login extends AppCompatActivity {
     Button loginBtn;
@@ -55,7 +62,9 @@ public class Login extends AppCompatActivity {
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
-
+        Glide.with(this).load(R.drawable.football)
+                .apply(bitmapTransform(new BlurTransformation(22)))
+                .into((ImageView) findViewById(R.id.bg));
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         loginBtn = findViewById(R.id.login_button);
@@ -186,6 +195,10 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
     private String saveHistory(History history) {
         // TODO: May be save history locally as well
         return String.valueOf(history.getId());
