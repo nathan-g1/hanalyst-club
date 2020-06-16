@@ -36,6 +36,10 @@ public class NotationRepository {
         new DeleteNotationAsyncTask(notationDao).execute(notation);
     }
 
+    public void deleteAllNotations() {
+        new DeleteAllNotationsAsyncTask(notationDao).execute();
+    }
+
 
     private class InsertNotationAsyncTask extends AsyncTask<Notation, Void, Void> {
         private NotationDao notationDao;
@@ -77,6 +81,20 @@ public class NotationRepository {
         @Override
         protected Void doInBackground(Notation... notations) {
             notationDao.deleteNotation(notations[0]);
+            return null;
+        }
+    }
+
+    private class DeleteAllNotationsAsyncTask extends AsyncTask<Void, Void, Void> {
+        private NotationDao notationDao;
+
+        public DeleteAllNotationsAsyncTask(NotationDao notationDao) {
+            this.notationDao = notationDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            notationDao.deleteAllNotations();
             return null;
         }
     }

@@ -27,4 +27,8 @@ public class NotationViewModel extends AndroidViewModel {
     public LiveData<List<Notation>> getAllNotations() {
         return allNotations;
     }
+
+    public void deleteAllNotations() {
+        notationRepository.deleteAllNotations();
+    }
 }

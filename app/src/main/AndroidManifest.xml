@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".lifecycle.HomeActivity" />
+        <activity
+            android:name=".lifecycle.HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".lifecycle.Analysis"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"

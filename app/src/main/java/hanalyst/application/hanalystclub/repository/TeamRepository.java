@@ -92,7 +92,7 @@ public class TeamRepository {
     private class DeleteAllTeamAsyncTask extends AsyncTask<Void, Void, Void> {
         private TeamDao teamDao;
 
-        public DeleteAllTeamAsyncTask(TeamDao teamDao) {
+        DeleteAllTeamAsyncTask(TeamDao teamDao) {
             this.teamDao = teamDao;
         }
 

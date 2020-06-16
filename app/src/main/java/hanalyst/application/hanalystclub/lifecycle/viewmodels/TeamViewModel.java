@@ -35,4 +35,8 @@ public class TeamViewModel extends AndroidViewModel {
     public LiveData<List<Team>> getAllTeams() {
         return allTeams;
     }
+
+    public void deleteAllTeams() {
+        repository.deleteAllTeams();
+    }
 }

@@ -29,4 +29,7 @@ public interface NotationDao {
 
     @Delete
     void deleteNotation(Notation notation);
+
+    @Query("DELETE FROM Notation")
+    void deleteAllNotations();
 }
