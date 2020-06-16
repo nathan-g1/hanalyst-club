@@ -53,6 +53,7 @@ public class FragmentSettings extends Fragment {
     private PlayerViewModel playerViewModel;
     private String teamId;
     private SharedPreferenceHAn sharedPreferenceHAn;
+    private TextView analystName, clubName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,39 +70,34 @@ public class FragmentSettings extends Fragment {
         playerViewModel = new ViewModelProvider(this).get(PlayerViewModel.class);
         gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
-        final List<User> list = new ArrayList<>();
-        final User[] ux = {null};
-        final String[] d = {""};
+
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        analystName = view.findViewById(R.id.analyst_name_settings);
+        clubName = view.findViewById(R.id.club_name_settings);
         userViewModel.getLoggedInUser().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
                 for (User user : users) {
-                    d[0] = user.getName();
                     System.out.println(user.getName() + " 234234 " + user.getEmail());
-                    list.add(new User(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getBio(), user.getExperience(), user.getTeamId()));
+                    analystName.setText(user.getName());
+                    TextView bio = view.findViewById(R.id.analyst_bio_settings);
+                    bio.setText(user.getBio());
                 }
             }
         });
-        final Team[] currentTeam = {null};
+
+
         teamViewModel.getAllTeams().observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
             @Override
             public void onChanged(List<Team> teams) {
                 for (Team team : teams) {
                     if (team.getId().equals(teamId)) {
-                        currentTeam[0] = team;
+                        clubName.setText(team.getName());
                         break;
                     }
                 }
             }
         });
-
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        TextView analystName = view.findViewById(R.id.analyst_name_settings);
-        TextView clubName = view.findViewById(R.id.club_name_settings);
-        TextView bio = view.findViewById(R.id.analyst_bio_settings);
-//        analystName.setText(list.get(0).getName());
-//        clubName.setText(currentTeam[0].getName());
-//        bio.setText(list.get(0).getBio());
         return view;
     }
 
@@ -111,6 +107,9 @@ public class FragmentSettings extends Fragment {
         LinearLayout changePin = view.findViewById(R.id.pin_section);
         LinearLayout changeLanguage = view.findViewById(R.id.language_section);
         LinearLayout signOut = view.findViewById(R.id.logout_section);
+
+
+
 
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
