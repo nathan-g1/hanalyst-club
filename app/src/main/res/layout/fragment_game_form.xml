@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
@@ -13,23 +14,41 @@
         android:layout_marginRight="5dp"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/venue"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:paddingTop="10dp"
-            android:singleLine="true"
-            android:nextFocusDown="@id/referee_name"
             android:layout_height="56dp"
-            android:hint="@string/venue" />
+            app:errorEnabled="true">
 
-        <EditText
-            android:id="@+id/referee_name"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/venue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:singleLine="true"
+                android:hint="@string/venue"
+                android:nextFocusDown="@id/referee_name"
+                android:inputType="text"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:paddingTop="10dp"
-            android:singleLine="true"
-            android:nextFocusDown="@id/game_home"
             android:layout_height="56dp"
-            android:hint="@string/referee_name" />
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/referee_name"
+                android:layout_width="match_parent"
+                android:nextFocusDown="@id/game_home"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:singleLine="true"
+                android:hint="@string/referee_name"
+                android:inputType="text"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
             android:layout_width="wrap_content"
