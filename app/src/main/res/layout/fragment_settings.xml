@@ -53,7 +53,7 @@
                 android:id="@+id/analyst_bio_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 android:lines="1"
                 android:paddingBottom="10dp"
                 android:text="@string/long_text"
