@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/list_title"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/players_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/select_message"
-        android:textColor="@color/white" />
+        tools:listitem="@layout/player_item"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -20,13 +20,15 @@ public interface PlayerDao {
     LiveData<List<Player>> getAllPlayers();
 
     @Query("SELECT * FROM Player where id =:playerId")
-    LiveData<Player> getAPlayer(int playerId);
+    LiveData<Player> getAPlayer(String playerId);
 
     @Update
     void updatePlayer(Player player);
 
-    @Delete
-    void deletePlayer(Player player);
+    @Query("DELETE FROM Player where id =:playerId")
+    void deletePlayer(String playerId);
 
+    @Query("DELETE FROM Player")
+    void deleteAllPlayers();
 
 }

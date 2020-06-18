@@ -19,11 +19,14 @@ public interface TeamDao {
     LiveData<List<Team>> getAllTeams();
 
     @Query("SELECT * FROM Team WHERE id =:teamId")
-    LiveData<List<Team>> getATeam(int teamId);
+    Team getATeam(String teamId);
 
     @Update
     void updateTeam(Team team);
 
     @Delete
     void deleteTeam(Team team);
+
+    @Query("DELETE FROM Team")
+    void deleteAllTeams();
 }

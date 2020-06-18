@@ -1,13 +1,14 @@
 package hanalyst.application.hanalystclub.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Team {
-
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    private String id;
     private String coach;
     private String analyst;
     private String since;
@@ -15,11 +16,21 @@ public class Team {
     private String captain;
     private int players;
 
-    public int getId() {
+    public Team(String id, String coach, String analyst, String since, String name, String captain, int players) {
+        this.id = id;
+        this.coach = coach;
+        this.analyst = analyst;
+        this.since = since;
+        this.name = name;
+        this.captain = captain;
+        this.players = players;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

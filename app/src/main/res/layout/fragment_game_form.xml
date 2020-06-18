@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/venue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:singleLine="true"
+                android:hint="@string/venue"
+                android:nextFocusDown="@id/referee_name"
+                android:inputType="text"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/referee_name"
+                android:layout_width="match_parent"
+                android:nextFocusDown="@id/game_home"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:singleLine="true"
+                android:hint="@string/referee_name"
+                android:inputType="text"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/home_or_away_radio_group"
+            android:orientation="horizontal"
+            android:checkedButton="@+id/sound" >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/game_home"
+                android:checked="true"
+                android:text="@string/home" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/game_away"
+                android:text="@string/away" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="left"
+            android:text="@string/select_game_type" />
+
+        <Spinner
+            android:id="@+id/spinner_game_type"
+            android:layout_width="match_parent"
+            android:foreground="@color/white"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="left"
+            android:text="@string/select_opponent_team" />
+
+        <Spinner
+            android:id="@+id/spinner_opponent_team"
+            android:layout_width="match_parent"
+            android:foreground="@color/white"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/game_start_button"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="56dp"
+            android:background="@drawable/round_layout"
+            android:text="@string/start_game"
+            android:textColor="@color/white" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:gravity="left"-->
+<!--            android:text="@string/select_playing_players" />-->
+        <!--        <ListView-->
+<!--            android:id="@+id/list_of_players"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="10dp" />-->
+    </LinearLayout>
+</LinearLayout>

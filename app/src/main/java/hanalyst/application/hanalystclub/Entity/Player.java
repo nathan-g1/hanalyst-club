@@ -1,23 +1,33 @@
 package hanalyst.application.hanalystclub.Entity;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Player {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    private String id;
     private int tNumber;
     private String name;
     private String teamId;
     private String history;
 
-    public int getId() {
+    public Player(String id, int tNumber, String name, String teamId, String history) {
+        this.id = id;
+        this.tNumber = tNumber;
+        this.name = name;
+        this.teamId = teamId;
+        this.history = history;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,88 +1,107 @@
 package hanalyst.application.hanalystclub.repository;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
+import android.app.Application;
 import android.os.AsyncTask;
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Room;
 import hanalyst.application.hanalystclub.Database.HAnalystDb;
 import hanalyst.application.hanalystclub.Entity.Player;
+import hanalyst.application.hanalystclub.dao.PlayerDao;
 
 public class PlayerRepository {
-    private String db_player = "db_player";
-    private HAnalystDb hAnalystDb;
+    private PlayerDao playerDao;
+    private LiveData<List<Player>> allPlayers;
 
-    public PlayerRepository(Context context) {
-        hAnalystDb = Room.databaseBuilder(context, HAnalystDb.class, db_player).build();
+    public PlayerRepository(Application application) {
+        HAnalystDb hAnalystDb = HAnalystDb.getInstance(application);
+        playerDao = hAnalystDb.playerDao();
+        allPlayers = playerDao.getAllPlayers();
     }
 
-    public void insertPlayer(int tNumber, String name, String teamId, int o) {
-        insertPlayer(tNumber, name, teamId);
+    public void insert(Player player) {
+        new InsertPlayerAsyncTask(playerDao).execute(player);
     }
 
-    public void insertPlayer(int tNumber, String name, String teamId) {
-        Player player = new Player();
-        player.setTNumber(tNumber);
-        player.setName(name);
-        player.setTeamId(teamId);
-        insertPlayer(player);
+    public void updatePlayer(Player player) {
+        new UpdatePlayerAsyncTask(playerDao).execute(player);
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public void insertPlayer(final Player player) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                hAnalystDb.daoAccess().insertPlayer(player);
-                return null;
-            }
-        }.execute();
+    public LiveData<Player> getASinglePlayer(String playerId) {
+        return playerDao.getAPlayer(playerId);
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public void updatePlayer(final Player player) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                hAnalystDb.daoAccess().updatePlayer(player);
-                return null;
-            }
-        }.execute();
+    public void deletePlayer(String playerId) {
+        new DeletePlayerAsyncTask(playerDao).execute(playerId);
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public void deletePlayer(final int id) {
-        final LiveData<Player> player = getPlayer(id);
-        if (player != null) {
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... voids) {
-                    hAnalystDb.daoAccess().deletePlayer(player.getValue());
-                    return null;
-                }
-            }.execute();
+    public void deleteAllPlayers() {
+        new DeleteAllPlayersAsyncTask(playerDao).execute();
+    }
+
+    public LiveData<List<Player>> getAllPlayers() {
+        return allPlayers;
+    }
+
+    private static class InsertPlayerAsyncTask extends AsyncTask<Player, Void, Void> {
+
+        private PlayerDao playerDao;
+
+        private InsertPlayerAsyncTask(PlayerDao playerDao) {
+            this.playerDao = playerDao;
+        }
+
+        @Override
+        protected Void doInBackground(Player... players) {
+            playerDao.insertPlayer(players[0]);
+            return null;
         }
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public void deletePlayers(final Player player) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                hAnalystDb.daoAccess().deletePlayer(player);
-                return null;
-            }
-        }.execute();
+    private static class UpdatePlayerAsyncTask extends AsyncTask<Player, Void, Void> {
+
+        private PlayerDao playerDao;
+
+        private UpdatePlayerAsyncTask(PlayerDao playerDao) {
+            this.playerDao = playerDao;
+        }
+
+        @Override
+        protected Void doInBackground(Player... players) {
+            playerDao.updatePlayer(players[0]);
+            return null;
+        }
     }
 
-    public LiveData<Player> getPlayer(int id) {
-        return hAnalystDb.daoAccess().getAPlayer(id);
+    private static class DeletePlayerAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private PlayerDao playerDao;
+
+        private DeletePlayerAsyncTask(PlayerDao playerDao) {
+            this.playerDao = playerDao;
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            playerDao.deletePlayer(strings[0]);
+            return null;
+        }
     }
 
-    public LiveData<List<Player>> getPlayers() {
-        return hAnalystDb.daoAccess().getAllPlayers();
+    private static class DeleteAllPlayersAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private PlayerDao playerDao;
+
+        private DeleteAllPlayersAsyncTask(PlayerDao playerDao) {
+            this.playerDao = playerDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            playerDao.deleteAllPlayers();
+            return null;
+        }
     }
+
 }

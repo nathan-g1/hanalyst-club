@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp">
+        
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/player_logo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:src="@drawable/analyst_one"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="1dp" />
+
+        <TextView
+            android:id="@+id/text_view_t_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="2"
+            android:textSize="25sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/text_view_player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/text_view_t_number"
+            android:layout_toEndOf="@+id/player_logo"
+            android:ellipsize="end"
+            android:paddingLeft="5dp"
+            android:layout_centerVertical="true"
+            android:maxLines="1"
+            android:text="Abraham Lincoln"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="TShirt Number"
+            android:layout_alignParentEnd="true"
+            android:textSize="12sp"
+            android:layout_below="@id/text_view_t_number"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
