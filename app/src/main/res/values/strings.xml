@@ -50,4 +50,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="select_zone">Select Zone</string>
+    <string name="players">Players</string>
+    <string name="captain_label">Captain</string>
+    <string name="coach_label">Coach</string>
+    <string name="analyst_label">Analyst</string>
 </resources>
