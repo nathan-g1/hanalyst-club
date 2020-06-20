@@ -54,4 +54,11 @@
     <string name="captain_label">Captain</string>
     <string name="coach_label">Coach</string>
     <string name="analyst_label">Analyst</string>
+    <string name="_2">2</string>
+    <string name="abraham_lincoln">Abraham Lincoln</string>
+    <string name="premier_league">Premier League</string>
+    <string name="_1_0">1 - 0</string>
+    <string name="buna_vs_st_george">Buna vs St. George</string>
+    <string name="dot_or_icon">-</string>
+    <string name="live">Live</string>
 </resources>
