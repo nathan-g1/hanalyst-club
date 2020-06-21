@@ -1,5 +1,6 @@
 package hanalyst.application.hanalystclub.Adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import hanalyst.application.hanalystclub.R;
 
 public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.GameHolder>  {
 
-    private List<Game> Games = new ArrayList<>();
+    private List<Game> games = new ArrayList<>();
     private static ClickListener clickListener;
 
     @NonNull
@@ -25,24 +26,27 @@ public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.
         return new GameHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull GameHolder holder, int position) {
-        
+        Game game = games.get(position);
+        holder.gameType.setText(game.getGameType());
+        holder.playingTeams.setText(game.getPlayingTeams()[0] + " vs " + game.getPlayingTeams()[1]);
     }
 
 
     @Override
     public int getItemCount() {
-        return Games.size();
+        return games.size();
     }
 
-    public void setGames(List<Game> Games) {
-        this.Games = Games;
+    public void setGames(List<Game> games) {
+        this.games = games;
         notifyDataSetChanged();
     }
 
     public List<Game> getGivenGames() {
-        return this.Games;
+        return this.games;
     }
 
     class GameHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
