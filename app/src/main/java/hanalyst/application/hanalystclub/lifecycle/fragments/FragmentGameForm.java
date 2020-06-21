@@ -1,5 +1,6 @@
 package hanalyst.application.hanalystclub.lifecycle.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +23,6 @@ import androidx.lifecycle.ViewModelProvider;
 import hanalyst.application.hanalystclub.Entity.Game;
 import hanalyst.application.hanalystclub.Entity.GameType;
 import hanalyst.application.hanalystclub.Entity.Team;
-import hanalyst.application.hanalystclub.Entity.Temperature;
 import hanalyst.application.hanalystclub.Entity.remote.RGame;
 import hanalyst.application.hanalystclub.Network.API;
 import hanalyst.application.hanalystclub.R;
@@ -145,7 +145,7 @@ public class FragmentGameForm extends Fragment {
         }
 
         List<String> playingTeams = new ArrayList<>();
-        playingTeams.add(teamId);
+        playingTeams.add(sharedPreferenceHAn.getTeamName());
         playingTeams.add(opponentTeamSpinner.getSelectedItem().toString());
         sharedPreferenceHAn.setPlayingTeams(sharedPreferenceHAn.getTeamName() + " vs " + opponentTeamSpinner.getSelectedItem().toString());
         Retrofit retrofit = new Retrofit.Builder()
@@ -157,6 +157,10 @@ public class FragmentGameForm extends Fragment {
                 currentTime, endTime, venueEditText.getText().toString(), ha, refereeNameEditText.getText().toString(),
                 "Celsius 23.12", "Addis Ababa", gameTypeSpinner.getSelectedItem().toString(), playingTeams
         );
+        ProgressDialog progress = new ProgressDialog(getContext());
+        progress.setTitle(getString(R.string.game_starting));
+        progress.setMessage(getString(R.string.loading));
+        progress.show();
         call.enqueue(new Callback<RGame>() {
             @Override
             public void onResponse(Call<RGame> call, Response<RGame> response) {
@@ -170,16 +174,18 @@ public class FragmentGameForm extends Fragment {
                             game1.getVenue(),
                             game1.isHa(),
                             game1.getReferee(),
-                            new Temperature(game1.getTemperature().split(" ")[0], Double.parseDouble(game1.getTemperature().split(" ")[1])),
+                            game1.getTemperature(),
                             game1.getGameType(),
                             game1.getPlayingTeams()
                     ));
+                    progress.dismiss();
                     startActivity(new Intent(getActivity(), Analysis.class));
                 } else {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         Toast.makeText(getContext(), jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
+                        progress.dismiss();
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
@@ -187,6 +193,7 @@ public class FragmentGameForm extends Fragment {
 
             @Override
             public void onFailure(Call<RGame> call, Throwable t) {
+                progress.dismiss();
                 Toast.makeText(getActivity(), R.string.problem_in_network, Toast.LENGTH_SHORT).show();
             }
         });
