@@ -61,4 +61,6 @@
     <string name="buna_vs_st_george">Buna vs St. George</string>
     <string name="dot_or_icon">-</string>
     <string name="live">Live</string>
+    <string name="loading">loading...</string>
+    <string name="game_starting">Game Starting</string>
 </resources>
