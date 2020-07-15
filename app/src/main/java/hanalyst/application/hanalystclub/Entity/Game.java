@@ -1,7 +1,5 @@
 package hanalyst.application.hanalystclub.Entity;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -18,13 +16,12 @@ public class Game {
     private String venue;
     private boolean ha;
     private String referee;
-    @TypeConverters(RoomConverter.class)
-    private Temperature temperature;
+    private String temperature;
     private String gameType;
     @TypeConverters(RoomConverter.class)
     private String[] playingTeams;
 
-    public Game(String id, String startTime, String endTime, String venue, boolean ha, String referee, Temperature temperature, String gameType, String[] playingTeams) {
+    public Game(String id, String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -84,11 +81,11 @@ public class Game {
         this.referee = referee;
     }
 
-    public Temperature getTemperature() {
+    public String getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Temperature temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 

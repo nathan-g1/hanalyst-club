@@ -173,17 +173,16 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<RTeam> allTeams = response.body();
                     for (RTeam rTeam : allTeams) {
-                        if (!rTeam.getId().equals(sharedPreferenceHAn.getTeamId())) {
-                            teamViewModel.insertTeam(new Team(rTeam.getId(),
-                                    rTeam.getCoach(),
-                                    rTeam.getAnalyst(),
-                                    rTeam.getSince(),
-                                    rTeam.getName(),
-                                    rTeam.getCaptain(),
-                                    rTeam.getPlayers()));
-                        } else {
+                        if (rTeam.getId().equals(sharedPreferenceHAn.getTeamId())) {
                             sharedPreferenceHAn.setTeamName(rTeam.getName());
                         }
+                        teamViewModel.insertTeam(new Team(rTeam.getId(),
+                                rTeam.getCoach(),
+                                rTeam.getAnalyst(),
+                                rTeam.getSince(),
+                                rTeam.getName(),
+                                rTeam.getCaptain(),
+                                rTeam.getPlayers()));
                     }
                 }
             }
@@ -199,6 +198,7 @@ public class Login extends AppCompatActivity {
     public void onBackPressed() {
 
     }
+
     private String saveHistory(History history) {
         // TODO: May be save history locally as well
         return String.valueOf(history.getId());
