@@ -63,4 +63,13 @@
     <string name="live">Live</string>
     <string name="loading">loading...</string>
     <string name="game_starting">Game Starting</string>
+    <string name="_0">0</string>
+    <string name="st_george">St. George</string>
+    <string name="_1">1</string>
+    <string name="addis_ababa">Addis Ababa</string>
+    <string name="_4_09_pm">4:09 PM</string>
+    <string name="fri_jan_2020">Fri Jan, 2020</string>
+    <string name="info">Info</string>
+    <string name="comments">Comments</string>
+    <string name="line_ups">Line-ups</string>
 </resources>
