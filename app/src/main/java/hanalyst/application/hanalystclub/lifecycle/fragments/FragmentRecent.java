@@ -48,7 +48,11 @@ public class FragmentRecent extends Fragment {
         gameViewModel.getAllGames().observe(getActivity(), recentGamesAdapter::setGames);
         gameList = recentGamesAdapter.getGivenGames();
         recentGamesAdapter.setOnItemClickListener((position, v) -> {
-
+            FragmentGameDetails fragmentGameDetails = new FragmentGameDetails();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame_fragment_switcher, fragmentGameDetails, "findThisFragment")
+                    .addToBackStack(null)
+                    .commit();
         });
         recyclerView.setAdapter(recentGamesAdapter);
         return view;
