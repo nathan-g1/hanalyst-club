@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -40,7 +39,8 @@ public class FragmentGameDetails extends Fragment {
         View view = inflater.inflate(R.layout.fragment_game_details, container, false);
         tabPageSwitcher = new TabPageSwitcher(getChildFragmentManager());
         viewPager = view.findViewById(R.id.viewPager_container);
-        viewPager.setAdapter(tabPageSwitcher);
+        setUpViewPager(viewPager);
+
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -51,9 +51,9 @@ public class FragmentGameDetails extends Fragment {
 
     private void setUpViewPager(ViewPager viewPager) {
         TabPageSwitcher tabPageSwitcher = new TabPageSwitcher(getChildFragmentManager());
-        tabPageSwitcher.addFragments(new FragmentInfo(gameId),"Info");
-        tabPageSwitcher.addFragments(new FragmentLineup(gameId),"Line-Ups");
-        tabPageSwitcher.addFragments(new FragmentComments(gameId),"Comments");
+        tabPageSwitcher.addFragments(new FragmentInfo(gameId), getString(R.string.info));
+        tabPageSwitcher.addFragments(new FragmentLineup(gameId), getString(R.string.line_ups));
+        tabPageSwitcher.addFragments(new FragmentComments(gameId), getString(R.string.comments));
         viewPager.setAdapter(tabPageSwitcher);
     }
 }
