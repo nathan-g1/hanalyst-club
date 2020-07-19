@@ -44,7 +44,7 @@ public class FragmentRecent extends Fragment {
         RecyclerView recyclerView  = view.findViewById(R.id.recent_games_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        RecentGamesAdapter recentGamesAdapter = new RecentGamesAdapter();
+        RecentGamesAdapter recentGamesAdapter = new RecentGamesAdapter(gameViewModel, getContext());
         gameViewModel.getAllGames().observe(getActivity(), recentGamesAdapter::setGames);
         gameList = recentGamesAdapter.getGivenGames();
         recentGamesAdapter.setOnItemClickListener((position, v) -> {
