@@ -21,4 +21,19 @@ public class TimeManager {
     public String getCurrentTime() {
         return String.valueOf(new Date().getTime());
     }
+
+    public boolean isGameInProgress(String endTime) {
+        Date currentDate = new Date();
+        return currentDate.getTime() <= Long.parseLong(endTime);
+    }
+
+    public boolean isGameOverhead(String endTime) {
+        Date currentDate = new Date();
+        return currentDate.getTime() > Long.parseLong(endTime);
+    }
+
+    public String getMinutesPlayed(String startTime) {
+        Date currentDate = new Date();
+        return String.valueOf(new Date(currentDate.getTime() - Long.parseLong(startTime)).getMinutes());
+    }
 }
