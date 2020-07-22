@@ -46,7 +46,7 @@ public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.
         holder.gameType.setText(game.getGameType());
         holder.playingTeams.setText(game.getPlayingTeams()[0] + " vs " + game.getPlayingTeams()[1]);
         holder.minutesPlayed.setText(timeManager.getMinutesPlayed(game.getStartTime()) + "'");
-        holder.liveOrEnded.setText(timeManager.isGameInProgress(game.getEndTime()) ? "Live" : "Played");
+        holder.liveOrEnded.setText(timeManager.isGameInProgress(game.getEndTime()) ? "In Progress" : "Played");
     }
 
 
