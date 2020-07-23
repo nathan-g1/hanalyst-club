@@ -73,4 +73,8 @@ public interface API {
             @Field("when") String when,
             @Field("gameId") String gameId
     );
+
+    @GET("games/{gameId}/notations")
+    Call<List<RNotation>> getNotations(@Path("gameId") String gameId);
+
 }
