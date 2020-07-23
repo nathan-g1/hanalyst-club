@@ -61,6 +61,9 @@ public interface API {
             @Field("playingTeams[]") List<String> playingTeams
     );
 
+    @GET("games")
+    Call<List<RGame>> getGames();
+
     @FormUrlEncoded
     @POST("notations")
     Call<RNotation> saveNotation(
