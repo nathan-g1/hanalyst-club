@@ -324,6 +324,7 @@ public class Analysis extends AppCompatActivity {
             public void onResponse(Call<RNotation> call, Response<RNotation> response) {
                 RNotation rNotation = response.body();
                 if (response.isSuccessful()) {
+//                    if (what.equals())
                     NotationViewModel notationViewModel = new ViewModelProvider(Analysis.this).get(NotationViewModel.class);
                     notationViewModel.insertNotation(new Notation(rNotation.getId(),
                             rNotation.getWhat(),

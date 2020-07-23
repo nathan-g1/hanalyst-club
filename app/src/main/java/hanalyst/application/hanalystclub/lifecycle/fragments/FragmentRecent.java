@@ -50,7 +50,10 @@ public class FragmentRecent extends Fragment {
         gameViewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
 
         RecyclerView recyclerView  = view.findViewById(R.id.recent_games_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         RecentGamesAdapter recentGamesAdapter = new RecentGamesAdapter(gameViewModel, getContext());
         RetrofitBuilder retrofitBuilder = new RetrofitBuilder();
