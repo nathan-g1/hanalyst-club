@@ -178,6 +178,7 @@ public class FragmentGameForm extends Fragment {
                             game1.getGameType(),
                             game1.getPlayingTeams()
                     ));
+                    sharedPreferenceHAn.setCurrentGameId(game1.getId());
                     progress.dismiss();
                     startActivity(new Intent(getActivity(), Analysis.class));
                 } else {
