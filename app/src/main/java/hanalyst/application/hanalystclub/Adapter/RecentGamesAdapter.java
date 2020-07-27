@@ -41,7 +41,7 @@ public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.
     @Override
     public void onBindViewHolder(@NonNull GameHolder holder, int position) {
         TimeManager timeManager = new TimeManager(context);
-        ViewHolderContentSupplier vcs = new ViewHolderContentSupplier(gameViewModel);
+        ViewHolderContentSupplier vcs = new ViewHolderContentSupplier(gameViewModel, context);
         Game game = games.get(position);
         holder.gameType.setText(game.getGameType());
         holder.playingTeams.setText(game.getPlayingTeams()[0] + " vs " + game.getPlayingTeams()[1]);
