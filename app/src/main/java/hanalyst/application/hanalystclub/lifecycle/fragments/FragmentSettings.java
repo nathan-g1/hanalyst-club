@@ -108,7 +108,9 @@ public class FragmentSettings extends Fragment {
         LinearLayout changeLanguage = view.findViewById(R.id.language_section);
         LinearLayout signOut = view.findViewById(R.id.logout_section);
 
-
+        changePin.setOnClickListener(v -> {
+            gotoChangePinFragment();
+        });
 
 
         signOut.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +144,14 @@ public class FragmentSettings extends Fragment {
             }
         });
 
+    }
+
+    private void gotoChangePinFragment() {
+        FragmentPassword fragmentGameDetails = new FragmentPassword();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_fragment_switcher, fragmentGameDetails, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
     }
 
     private void clearPreferences() {

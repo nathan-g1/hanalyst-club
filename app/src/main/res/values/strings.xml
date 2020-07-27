@@ -73,4 +73,9 @@
     <string name="comments">Comments</string>
     <string name="line_ups">Line-ups</string>
     <string name="minutes_played">12\'</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="set">Set</string>
 </resources>
