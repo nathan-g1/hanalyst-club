@@ -1,5 +1,6 @@
 package hanalyst.application.hanalystclub.Adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +25,11 @@ public class NotationsAdapter extends RecyclerView.Adapter<NotationsAdapter.Nota
         return new NotationHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull NotationsAdapter.NotationHolder holder, int position) {
         RNotation notation = notations.get(position);
-        holder.minutesTextView.setText(notation.getWhen().split(":")[0]);
+        holder.minutesTextView.setText(notation.getWhen().split(":")[0] + "'");
         holder.commentsTextView.setText(notation.getWhat());
     }
 
