@@ -52,6 +52,7 @@ public class FragmentComments extends Fragment {
                     public void onResponse(Call<List<RNotation>> call, Response<List<RNotation>> response) {
                         if (response.isSuccessful()) {
                             notationsAdapter.setNotations(response.body());
+                            recyclerView.setAdapter(notationsAdapter);
                         }
                     }
 
