@@ -10,11 +10,11 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import hanalyst.application.hanalystclub.Entity.Notation;
+import hanalyst.application.hanalystclub.Entity.remote.RNotation;
 import hanalyst.application.hanalystclub.R;
 
 public class NotationsAdapter extends RecyclerView.Adapter<NotationsAdapter.NotationHolder> {
-    private List<Notation> notations = new ArrayList<>();
+    private List<RNotation> notations = new ArrayList<>();
 
 
     @NonNull
@@ -26,9 +26,13 @@ public class NotationsAdapter extends RecyclerView.Adapter<NotationsAdapter.Nota
 
     @Override
     public void onBindViewHolder(@NonNull NotationsAdapter.NotationHolder holder, int position) {
-        Notation notation = notations.get(position);
+        RNotation notation = notations.get(position);
         holder.minutesTextView.setText(notation.getWhen().split(":")[0]);
         holder.commentsTextView.setText(notation.getWhat());
+    }
+
+    public void setNotations(List<RNotation> newNotations) {
+        this.notations = newNotations;
     }
 
     @Override
