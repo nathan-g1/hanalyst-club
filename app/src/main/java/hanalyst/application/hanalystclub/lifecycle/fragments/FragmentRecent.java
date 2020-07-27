@@ -21,6 +21,7 @@ import hanalyst.application.hanalystclub.Entity.Game;
 import hanalyst.application.hanalystclub.Entity.remote.RGame;
 import hanalyst.application.hanalystclub.Network.RetrofitBuilder;
 import hanalyst.application.hanalystclub.R;
+import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
 import hanalyst.application.hanalystclub.lifecycle.Analysis;
 import hanalyst.application.hanalystclub.lifecycle.HomeActivity;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameViewModel;
@@ -85,7 +86,9 @@ public class FragmentRecent extends Fragment {
         });
 //        gameViewModel.getAllGames().observe(getActivity(), recentGamesAdapter::setGames);
         gameList = recentGamesAdapter.getGivenGames();
-        recentGamesAdapter.setOnItemClickListener((position, v) -> {
+        recentGamesAdapter.setOnItemClickListener((position, v, game) -> {
+            SharedPreferenceHAn sharedPreferenceHAn = new SharedPreferenceHAn(getContext());
+            sharedPreferenceHAn.setCurrentGameDetailsId(game.getId());
             FragmentGameDetails fragmentGameDetails = new FragmentGameDetails();
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_fragment_switcher, fragmentGameDetails, "findThisFragment")

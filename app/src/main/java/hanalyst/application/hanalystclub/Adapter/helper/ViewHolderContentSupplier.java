@@ -14,7 +14,7 @@ public class ViewHolderContentSupplier {
     }
 
     public String getScores() {
-
+        return "";
     }
 
 }

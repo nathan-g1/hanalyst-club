@@ -80,7 +80,7 @@ public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.
 
         @Override
         public void onClick(View v) {
-            clickListener.onItemClick(getAdapterPosition(), v);
+            clickListener.onItemClick(getAdapterPosition(), v, games.get(getAdapterPosition()));
         }
     }
 
@@ -89,6 +89,6 @@ public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.
     }
 
     public interface ClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(int position, View v, Game game);
     }
 }

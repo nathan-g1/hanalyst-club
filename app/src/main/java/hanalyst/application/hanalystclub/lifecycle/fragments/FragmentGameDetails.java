@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 import hanalyst.application.hanalystclub.Entity.Notation;
+import hanalyst.application.hanalystclub.Network.RetrofitBuilder;
 import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.lifecycle.HomeActivity;
 import hanalyst.application.hanalystclub.lifecycle.controller.TabPageSwitcher;
@@ -37,6 +38,10 @@ public class FragmentGameDetails extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ((HomeActivity) getActivity()).setTitle("Recent");
         View view = inflater.inflate(R.layout.fragment_game_details, container, false);
+
+        RetrofitBuilder retrofitBuilder = new RetrofitBuilder();
+        retrofitBuilder.getApi().getGames()
+
         tabPageSwitcher = new TabPageSwitcher(getChildFragmentManager());
         viewPager = view.findViewById(R.id.viewPager_container);
         setUpViewPager(viewPager);

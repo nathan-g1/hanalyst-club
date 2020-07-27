@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import hanalyst.application.hanalystclub.R;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.NotationViewModel;
 
 public class FragmentLineup extends Fragment {
 
