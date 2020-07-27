@@ -61,6 +61,9 @@ public interface API {
             @Field("playingTeams[]") List<String> playingTeams
     );
 
+    @GET("games/{gameId}")
+    Call<RGame> getAGame(@Path("gameId") String gameId);
+
     @GET("games")
     Call<List<RGame>> getGames();
 
