@@ -16,6 +16,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -23,6 +24,13 @@ public interface API {
 
     @GET("clubusers/findOne?")
     Call<ClubUser> getUser(@Query("filter") String param);
+
+    @PUT("clubusers")
+    Call<ClubUser> changePassword(
+            @Field("id") String id,
+            @Field("email") String email,
+            @Field("password") String newPassword
+    );
 
     @GET("GameTypes")
     Call<List<RGameType>> getGameTypes();
