@@ -50,4 +50,8 @@ public class FieldValidation {
         ((TextView) spinner.getSelectedView()).setError(context.getString(R.string.field_should_be_selected));
         return false;
     }
+
+    public String fieldStringValue(EditText textField) {
+        return textField.getText().toString();
+    }
 }
