@@ -14,6 +14,14 @@
         android:layout_marginRight="5dp"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/game_starting_hour"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:text="Time: 3:45"/>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
