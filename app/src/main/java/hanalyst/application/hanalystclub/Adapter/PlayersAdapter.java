@@ -41,6 +41,10 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.PlayerHo
         notifyDataSetChanged();
     }
 
+    public Player getSelectedPlayer(int position) {
+        return this.players.get(position);
+    }
+
     class PlayerHolder extends RecyclerView.ViewHolder {
         private TextView playerName;
         private TextView tNumber;
