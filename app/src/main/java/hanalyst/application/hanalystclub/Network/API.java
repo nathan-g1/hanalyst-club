@@ -27,6 +27,7 @@ public interface API {
     @GET("clubusers/findOne?")
     Call<ClubUser> getUser(@Query("filter") String param);
 
+    @FormUrlEncoded
     @PUT("clubusers")
     Call<ClubUser> changePassword(
             @Field("id") String id,
