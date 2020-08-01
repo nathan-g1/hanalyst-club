@@ -1,6 +1,9 @@
 package hanalyst.application.hanalystclub.lifecycle.fragments;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -8,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -37,11 +41,13 @@ import hanalyst.application.hanalystclub.Entity.Team;
 import hanalyst.application.hanalystclub.Entity.remote.History;
 import hanalyst.application.hanalystclub.Entity.remote.RPlayer;
 import hanalyst.application.hanalystclub.Network.API;
+import hanalyst.application.hanalystclub.Network.RetrofitBuilder;
 import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
 import hanalyst.application.hanalystclub.lifecycle.HomeActivity;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.PlayerViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.TeamViewModel;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,6 +68,7 @@ public class FragmentTeam extends Fragment {
     String teamId;
     TeamViewModel teamViewModel;
     PlayerViewModel playerViewModel;
+    RetrofitBuilder retrofitBuilder;
 
 
     @Override
@@ -76,7 +83,7 @@ public class FragmentTeam extends Fragment {
 
         teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
         playerViewModel = new ViewModelProvider(this).get(PlayerViewModel.class);
-
+        retrofitBuilder = new RetrofitBuilder();
 
         View view = inflater.inflate(R.layout.fragment_team, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.players_in_team);
@@ -87,6 +94,42 @@ public class FragmentTeam extends Fragment {
 
         recyclerView.setAdapter(playersAdapter);
         playerViewModel.getAllPlayers().observe(getViewLifecycleOwner(), playersAdapter::setPlayers);
+
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                final int position = viewHolder.getAdapterPosition();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_player));
+                builder.setPositiveButton(getString(R.string.remove), (dialog, which) -> {
+                    retrofitBuilder.getApi().deletePlayer(playersAdapter.getSelectedPlayer(position).getId()).enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if (response.isSuccessful()) {
+                                playerViewModel.deletePlayer(playersAdapter.getSelectedPlayer(position).getId());
+                                playersAdapter.notifyItemRemoved(position);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getContext(), R.string.problem_in_network, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }).setNegativeButton(getString(R.string.cancel), ((dialog, which) -> {
+                    playersAdapter.notifyDataSetChanged();
+                })).show();
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         TextView textViewTeamName = view.findViewById(R.id.team_name_display);
         TextView textViewCoachName = view.findViewById(R.id.coach_name_display);
