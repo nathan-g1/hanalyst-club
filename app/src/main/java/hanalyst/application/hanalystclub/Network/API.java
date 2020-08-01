@@ -41,7 +41,7 @@ public interface API {
     Call<List<RPlayer>> getPlayerInATeam(@Query("filter") String param);
 
     @DELETE("players/{playerId}")
-    Call<RPlayer> deletePlayer(@Path("playerId") String playerId);
+    Call<ResponseBody> deletePlayer(@Path("playerId") String playerId);
 
     @GET("teams/{teamId}/members")
     Call<List<RPlayer>> getMembersInATeam(@Path("teamId") String teamId);
