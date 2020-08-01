@@ -78,7 +78,6 @@ public class FragmentSettings extends Fragment {
             @Override
             public void onChanged(List<User> users) {
                 for (User user : users) {
-                    System.out.println(user.getName() + " 234234 " + user.getEmail());
                     analystName.setText(user.getName());
                     TextView bio = view.findViewById(R.id.analyst_bio_settings);
                     bio.setText(user.getBio());
