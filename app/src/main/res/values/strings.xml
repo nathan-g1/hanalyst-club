@@ -79,4 +79,7 @@
     <string name="cancel">Cancel</string>
     <string name="set">Set</string>
     <string name="password_mismatch">Password does not match</string>
+    <string name="are_you_sure_you_want_to_delete_this_player">Are you sure you wnat to delete this player?</string>
+    <string name="remove">Remove</string>
+    <string name="new_password_set">A new password is set successfully!</string>
 </resources>

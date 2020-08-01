@@ -30,6 +30,10 @@ public interface API {
     @FormUrlEncoded
     @PUT("clubusers")
     Call<ClubUser> changePassword(
+            @Field("name") String name,
+            @Field("bio") String bio,
+            @Field("experience") int experience,
+            @Field("teamId") String teamId,
             @Field("id") String id,
             @Field("email") String email,
             @Field("password") String newPassword
