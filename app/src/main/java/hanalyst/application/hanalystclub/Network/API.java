@@ -2,6 +2,7 @@ package hanalyst.application.hanalystclub.Network;
 
 import java.util.List;
 
+import androidx.room.Delete;
 import hanalyst.application.hanalystclub.Entity.Temperature;
 import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
 import hanalyst.application.hanalystclub.Entity.remote.RGame;
@@ -12,6 +13,7 @@ import hanalyst.application.hanalystclub.Entity.remote.RTeam;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -37,6 +39,9 @@ public interface API {
 
     @GET("players?")
     Call<List<RPlayer>> getPlayerInATeam(@Query("filter") String param);
+
+    @DELETE("players/{playerId}")
+    Call<RPlayer> deletePlayer(@Path("playerId") String playerId);
 
     @GET("teams/{teamId}/members")
     Call<List<RPlayer>> getMembersInATeam(@Path("teamId") String teamId);
