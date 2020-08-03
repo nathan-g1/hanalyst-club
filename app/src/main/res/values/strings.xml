@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HAnalystClub</string>
+    <string name="app_name">Hossanalyst</string>
     <string name="login">LOGIN</string>
     <string name="welcome_to_hanalyst">Welcome to HAnalyst!</string>
     <string name="title_activity_analysis">Analysis</string>
@@ -61,4 +61,25 @@
     <string name="buna_vs_st_george">Buna vs St. George</string>
     <string name="dot_or_icon">-</string>
     <string name="live">Live</string>
+    <string name="loading">loading...</string>
+    <string name="game_starting">Game Starting</string>
+    <string name="_0">0</string>
+    <string name="st_george">St. George</string>
+    <string name="_1">1</string>
+    <string name="addis_ababa">Addis Ababa</string>
+    <string name="_4_09_pm">4:09 PM</string>
+    <string name="fri_jan_2020">Fri Jan, 2020</string>
+    <string name="info">Info</string>
+    <string name="comments">Comments</string>
+    <string name="line_ups">Line-ups</string>
+    <string name="minutes_played">12\'</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="set">Set</string>
+    <string name="password_mismatch">Password does not match</string>
+    <string name="are_you_sure_you_want_to_delete_this_player">Are you sure you wnat to delete this player?</string>
+    <string name="remove">Remove</string>
+    <string name="new_password_set">A new password is set successfully!</string>
 </resources>

@@ -1,6 +1,8 @@
 package hanalyst.application.hanalystclub.lifecycle.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import androidx.fragment.app.Fragment;
@@ -62,12 +67,29 @@ public class FragmentGameForm extends Fragment {
         // Inflate the layout for this fragment
         ((HomeActivity) getActivity()).setTitle("Game Information");
         View view = inflater.inflate(R.layout.fragment_game_form, container, false);
+        TextView gameStartTime = view.findViewById(R.id.game_starting_hour);
         EditText venueEditText = view.findViewById(R.id.venue);
         EditText refereeNameEditText = view.findViewById(R.id.referee_name);
         RadioGroup radioGroup = view.findViewById(R.id.home_or_away_radio_group);
         Spinner gameTypeSpinner = view.findViewById(R.id.spinner_game_type);
         Spinner opponentTeamSpinner = view.findViewById(R.id.spinner_opponent_team);
         Button startGame = view.findViewById(R.id.game_start_button);
+
+        gameStartTime.setOnClickListener(v -> {
+            Calendar mcurrentTime = Calendar.getInstance();
+            int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+            int minute = mcurrentTime.get(Calendar.MINUTE);
+            TimePickerDialog mTimePicker;
+            mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                    gameStartTime.setText("Time: " + selectedHour + ":" + selectedMinute);
+                }
+            }, hour, minute, true);
+            mTimePicker.setTitle("Select Time");
+            mTimePicker.show();
+        });
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -178,6 +200,7 @@ public class FragmentGameForm extends Fragment {
                             game1.getGameType(),
                             game1.getPlayingTeams()
                     ));
+                    sharedPreferenceHAn.setCurrentGameId(game1.getId());
                     progress.dismiss();
                     startActivity(new Intent(getActivity(), Analysis.class));
                 } else {

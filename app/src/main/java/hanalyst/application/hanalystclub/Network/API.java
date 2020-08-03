@@ -2,6 +2,7 @@ package hanalyst.application.hanalystclub.Network;
 
 import java.util.List;
 
+import androidx.room.Delete;
 import hanalyst.application.hanalystclub.Entity.Temperature;
 import hanalyst.application.hanalystclub.Entity.remote.ClubUser;
 import hanalyst.application.hanalystclub.Entity.remote.RGame;
@@ -12,10 +13,12 @@ import hanalyst.application.hanalystclub.Entity.remote.RTeam;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -24,11 +27,26 @@ public interface API {
     @GET("clubusers/findOne?")
     Call<ClubUser> getUser(@Query("filter") String param);
 
+    @FormUrlEncoded
+    @PUT("clubusers")
+    Call<ClubUser> changePassword(
+            @Field("name") String name,
+            @Field("bio") String bio,
+            @Field("experience") int experience,
+            @Field("teamId") String teamId,
+            @Field("id") String id,
+            @Field("email") String email,
+            @Field("password") String newPassword
+    );
+
     @GET("GameTypes")
     Call<List<RGameType>> getGameTypes();
 
     @GET("players?")
     Call<List<RPlayer>> getPlayerInATeam(@Query("filter") String param);
+
+    @DELETE("players/{playerId}")
+    Call<ResponseBody> deletePlayer(@Path("playerId") String playerId);
 
     @GET("teams/{teamId}/members")
     Call<List<RPlayer>> getMembersInATeam(@Path("teamId") String teamId);
@@ -61,6 +79,12 @@ public interface API {
             @Field("playingTeams[]") List<String> playingTeams
     );
 
+    @GET("games/{gameId}")
+    Call<RGame> getAGame(@Path("gameId") String gameId);
+
+    @GET("games")
+    Call<List<RGame>> getGames();
+
     @FormUrlEncoded
     @POST("notations")
     Call<RNotation> saveNotation(
@@ -70,4 +94,8 @@ public interface API {
             @Field("when") String when,
             @Field("gameId") String gameId
     );
+
+    @GET("games/{gameId}/notations")
+    Call<List<RNotation>> getNotations(@Path("gameId") String gameId);
+
 }

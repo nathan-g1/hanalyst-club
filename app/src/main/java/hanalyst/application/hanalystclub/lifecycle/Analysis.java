@@ -318,12 +318,13 @@ public class Analysis extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         API api = retrofit.create(API.class);
-        Call<RNotation> rNotationCall = api.saveNotation(what, allPlayers.get(playerPosition).getName(), String.valueOf(zone), currentTime, sharedPreferenceHAn.getTeamId());
+        Call<RNotation> rNotationCall = api.saveNotation(what, allPlayers.get(playerPosition).getName(), String.valueOf(zone), currentTime, sharedPreferenceHAn.getCurrentGameId());
         rNotationCall.enqueue(new Callback<RNotation>() {
             @Override
             public void onResponse(Call<RNotation> call, Response<RNotation> response) {
                 RNotation rNotation = response.body();
                 if (response.isSuccessful()) {
+//                    if (what.equals())
                     NotationViewModel notationViewModel = new ViewModelProvider(Analysis.this).get(NotationViewModel.class);
                     notationViewModel.insertNotation(new Notation(rNotation.getId(),
                             rNotation.getWhat(),

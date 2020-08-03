@@ -40,7 +40,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:maxLines="1"
-            android:text="12'"
+            android:text="@string/minutes_played"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp" />
 

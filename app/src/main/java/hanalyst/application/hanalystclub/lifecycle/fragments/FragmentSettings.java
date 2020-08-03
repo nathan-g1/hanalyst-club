@@ -78,7 +78,6 @@ public class FragmentSettings extends Fragment {
             @Override
             public void onChanged(List<User> users) {
                 for (User user : users) {
-                    System.out.println(user.getName() + " 234234 " + user.getEmail());
                     analystName.setText(user.getName());
                     TextView bio = view.findViewById(R.id.analyst_bio_settings);
                     bio.setText(user.getBio());
@@ -108,7 +107,9 @@ public class FragmentSettings extends Fragment {
         LinearLayout changeLanguage = view.findViewById(R.id.language_section);
         LinearLayout signOut = view.findViewById(R.id.logout_section);
 
-
+        changePin.setOnClickListener(v -> {
+            gotoChangePinFragment();
+        });
 
 
         signOut.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +143,14 @@ public class FragmentSettings extends Fragment {
             }
         });
 
+    }
+
+    private void gotoChangePinFragment() {
+        FragmentPassword fragmentGameDetails = new FragmentPassword();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_fragment_switcher, fragmentGameDetails, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
     }
 
     private void clearPreferences() {

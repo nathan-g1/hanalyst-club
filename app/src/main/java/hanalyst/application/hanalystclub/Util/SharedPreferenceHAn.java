@@ -5,6 +5,8 @@ import android.preference.PreferenceManager;
 
 public class SharedPreferenceHAn {
     private static final String PLAYING_TEAM_NAME = "PLAYING_TEAM_NAME";
+    private static final String CURRENT_GAME_ID = "CURRENT_GAME_ID";
+    private static final String CURRENT_GAME_DETAILS_ID = "CURRENT_GAME_DETAILS_ID";
     private Context context;
     private static final String TEAM_NAME = "TEAM_NAME";
     private static final String TEAM_ID = "TEAM_ID";
@@ -35,6 +37,21 @@ public class SharedPreferenceHAn {
 
     public String getPlayingTeams() {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(PLAYING_TEAM_NAME, "null");
+    }
+
+    public void setCurrentGameId(String gameId) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(CURRENT_GAME_ID, gameId).apply();
+    }
+
+    public String getCurrentGameId() {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(CURRENT_GAME_ID,"null");
+    }
+    public void setCurrentGameDetailsId(String gameId) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(CURRENT_GAME_DETAILS_ID, gameId).apply();
+    }
+
+    public String getCurrentDetailsGameId() {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(CURRENT_GAME_DETAILS_ID,"null");
     }
 
     public void signOut() {

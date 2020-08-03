@@ -1,6 +1,7 @@
 package hanalyst.application.hanalystclub.Adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,23 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import hanalyst.application.hanalystclub.Adapter.helper.ViewHolderContentSupplier;
 import hanalyst.application.hanalystclub.Entity.Game;
 import hanalyst.application.hanalystclub.R;
+import hanalyst.application.hanalystclub.Util.TimeManager;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameViewModel;
 
 public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.GameHolder>  {
 
     private List<Game> games = new ArrayList<>();
+    private Context context;
     private static ClickListener clickListener;
+    private GameViewModel gameViewModel;
+
+    public RecentGamesAdapter(GameViewModel gameViewModel, Context context) {
+        this.gameViewModel = gameViewModel;
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -29,9 +40,13 @@ public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull GameHolder holder, int position) {
+        TimeManager timeManager = new TimeManager(context);
+        ViewHolderContentSupplier vcs = new ViewHolderContentSupplier(gameViewModel, context);
         Game game = games.get(position);
         holder.gameType.setText(game.getGameType());
         holder.playingTeams.setText(game.getPlayingTeams()[0] + " vs " + game.getPlayingTeams()[1]);
+        holder.minutesPlayed.setText(timeManager.getMinutesPlayed(game.getStartTime()) + "'");
+        holder.liveOrEnded.setText(timeManager.isGameInProgress(game.getEndTime()) ? "In Progress" : "Played");
     }
 
 
@@ -60,11 +75,12 @@ public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.
             minutesPlayed = itemView.findViewById(R.id.minutes_played);
             liveOrEnded = itemView.findViewById(R.id.live_or_ended);
             gameType = itemView.findViewById(R.id.game_type_display);
+            minutesPlayed = itemView.findViewById(R.id.minutes_played);
         }
 
         @Override
         public void onClick(View v) {
-            clickListener.onItemClick(getAdapterPosition(), v);
+            clickListener.onItemClick(getAdapterPosition(), v, games.get(getAdapterPosition()));
         }
     }
 
@@ -73,6 +89,6 @@ public class RecentGamesAdapter extends RecyclerView.Adapter<RecentGamesAdapter.
     }
 
     public interface ClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(int position, View v, Game game);
     }
 }
