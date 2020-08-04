@@ -20,8 +20,9 @@ public class Game {
     private String gameType;
     @TypeConverters(RoomConverter.class)
     private String[] playingTeams;
+    private String formation;
 
-    public Game(String id, String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams) {
+    public Game(String id, String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams, String formation) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -31,6 +32,7 @@ public class Game {
         this.temperature = temperature;
         this.gameType = gameType;
         this.playingTeams = playingTeams;
+        this.formation = formation;
     }
 
     public String getId() {
@@ -103,5 +105,13 @@ public class Game {
 
     public void setPlayingTeams(String[] playingTeams) {
         this.playingTeams = playingTeams;
+    }
+
+    public String getFormation() {
+        return formation;
+    }
+
+    public void setFormation(String formation) {
+        this.formation = formation;
     }
 }

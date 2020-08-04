@@ -11,8 +11,9 @@ public class RGame {
     private String temperature;
     private String gameType;
     private String[] playingTeams;
+    private String formation;
 
-    public RGame(String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams) {
+    public RGame(String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams, String formation) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.venue = venue;
@@ -21,9 +22,10 @@ public class RGame {
         this.temperature = temperature;
         this.gameType = gameType;
         this.playingTeams = playingTeams;
+        this.formation = formation;
     }
 
-    public RGame(String id, String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams) {
+    public RGame(String id, String startTime, String endTime, String venue, boolean ha, String referee, String temperature, String gameType, String[] playingTeams, String formation) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -33,6 +35,7 @@ public class RGame {
         this.temperature = temperature;
         this.gameType = gameType;
         this.playingTeams = playingTeams;
+        this.formation = formation;
     }
 
     public String getId() {
@@ -107,4 +110,11 @@ public class RGame {
         this.playingTeams = playingTeams;
     }
 
+    public String getFormation() {
+        return formation;
+    }
+
+    public void setFormation(String formation) {
+        this.formation = formation;
+    }
 }

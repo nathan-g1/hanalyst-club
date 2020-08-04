@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Hossanalyst</string>
     <string name="login">LOGIN</string>
-    <string name="welcome_to_hanalyst">Welcome to HAnalyst!</string>
+    <string name="welcome_to_hossanalyst">Hossanalyst!</string>
     <string name="title_activity_analysis">Analysis</string>
     <string name="email">test@test.com</string>
     <string name="pass">pass</string>
@@ -22,6 +22,7 @@
     <string name="analyst_hint">Analyst name</string>
     <string name="referee_name">Referee name</string>
     <string name="select_game_type">Select game type</string>
+    <string name="select_game_formation">Select Line up</string>
     <string name="venue">Venue</string>
     <string name="away">Away</string>
     <!-- TODO: Remove or change this placeholder text -->

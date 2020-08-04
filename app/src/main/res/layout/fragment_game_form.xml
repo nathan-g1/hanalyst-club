@@ -6,6 +6,9 @@
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -91,6 +94,18 @@
             android:layout_width="match_parent"
             android:foreground="@color/white"
             android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="left"
+            android:text="@string/select_game_formation" />
+
+        <Spinner
+            android:id="@+id/spinner_game_formation"
+            android:layout_width="match_parent"
+            android:foreground="@color/white"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
@@ -125,4 +140,5 @@
 <!--            android:layout_height="wrap_content"-->
 <!--            android:paddingTop="10dp" />-->
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>

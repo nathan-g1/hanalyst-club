@@ -21,7 +21,7 @@ import hanalyst.application.hanalystclub.dao.PlayerDao;
 import hanalyst.application.hanalystclub.dao.TeamDao;
 import hanalyst.application.hanalystclub.dao.UserDao;
 
-@Database(entities = {Player.class, Team.class, Notation.class, Game.class, User.class, GameType.class}, version = 5, exportSchema = false)
+@Database(entities = {Player.class, Team.class, Notation.class, Game.class, User.class, GameType.class}, version = 6, exportSchema = false)
 public abstract class HAnalystDb extends RoomDatabase {
     public abstract PlayerDao playerDao();
     public abstract TeamDao teamDao();

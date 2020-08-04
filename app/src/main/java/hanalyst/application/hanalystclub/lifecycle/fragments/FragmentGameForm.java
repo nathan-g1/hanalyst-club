@@ -20,6 +20,7 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class FragmentGameForm extends Fragment {
         RadioGroup radioGroup = view.findViewById(R.id.home_or_away_radio_group);
         Spinner gameTypeSpinner = view.findViewById(R.id.spinner_game_type);
         Spinner opponentTeamSpinner = view.findViewById(R.id.spinner_opponent_team);
+        Spinner gameFormation = view.findViewById(R.id.spinner_game_formation);
         Button startGame = view.findViewById(R.id.game_start_button);
 
         gameStartTime.setOnClickListener(v -> {
@@ -114,6 +116,10 @@ public class FragmentGameForm extends Fragment {
                 if (!team.getId().equals(teamId)) opponentTeamsName.add(team.getName());
             }
         });
+        List<String> formationsList = new ArrayList<String>( Arrays.asList("3-4-4", "4-4-3", "4-4-2") );
+        ArrayAdapter<String> gameFormationArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, formationsList);
+        gameFormationArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gameFormation.setAdapter(gameFormationArrayAdapter);
 
         ArrayAdapter<String> opponentTeamsArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opponentTeamsName);
         opponentTeamsArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -136,7 +142,7 @@ public class FragmentGameForm extends Fragment {
         startGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveGameInfo(v, venueEditText, refereeNameEditText, gameTypeSpinner, opponentTeamSpinner);
+                saveGameInfo(v, venueEditText, refereeNameEditText, gameTypeSpinner, opponentTeamSpinner, gameFormation);
             }
         });
 
@@ -145,7 +151,7 @@ public class FragmentGameForm extends Fragment {
 
     private void saveGameInfo(
             View v, EditText venueEditText, EditText refereeNameEditText,
-            Spinner gameTypeSpinner, Spinner opponentTeamSpinner) {
+            Spinner gameTypeSpinner, Spinner opponentTeamSpinner, Spinner gameFormation) {
         FieldValidation fv = new FieldValidation(getContext());
         tM = new TimeManager(getContext());
         String currentTime = tM.getCurrentTime();
@@ -177,7 +183,7 @@ public class FragmentGameForm extends Fragment {
         API api = retrofit.create(API.class);
         Call<RGame> call = api.saveGame(
                 currentTime, endTime, venueEditText.getText().toString(), ha, refereeNameEditText.getText().toString(),
-                "Celsius 23.12", "Addis Ababa", gameTypeSpinner.getSelectedItem().toString(), playingTeams
+                "Celsius 23.12", "Addis Ababa", gameTypeSpinner.getSelectedItem().toString(), playingTeams, gameFormation.getSelectedItem().toString()
         );
         ProgressDialog progress = new ProgressDialog(getContext());
         progress.setTitle(getString(R.string.game_starting));
@@ -198,7 +204,8 @@ public class FragmentGameForm extends Fragment {
                             game1.getReferee(),
                             game1.getTemperature(),
                             game1.getGameType(),
-                            game1.getPlayingTeams()
+                            game1.getPlayingTeams(),
+                            game1.getFormation()
                     ));
                     sharedPreferenceHAn.setCurrentGameId(game1.getId());
                     progress.dismiss();
