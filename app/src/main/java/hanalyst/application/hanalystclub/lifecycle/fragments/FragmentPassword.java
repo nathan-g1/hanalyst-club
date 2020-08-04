@@ -95,7 +95,6 @@ public class FragmentPassword extends Fragment {
                 .replace(R.id.frame_fragment_switcher, fragmentSettings, "findThisFragment")
                 .addToBackStack(null)
                 .commit();
-
     }
 
 }

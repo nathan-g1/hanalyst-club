@@ -1,12 +1,17 @@
 package hanalyst.application.hanalystclub.lifecycle;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import hanalyst.application.hanalystclub.Entity.GameType;
+import hanalyst.application.hanalystclub.Entity.Language;
 import hanalyst.application.hanalystclub.Entity.remote.RGameType;
 import hanalyst.application.hanalystclub.Network.API;
 import hanalyst.application.hanalystclub.R;
+import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
 import hanalyst.application.hanalystclub.lifecycle.fragments.FragmentHome;
 import hanalyst.application.hanalystclub.lifecycle.fragments.FragmentRecent;
 import hanalyst.application.hanalystclub.lifecycle.fragments.FragmentReport;
@@ -38,6 +45,12 @@ public class HomeActivity extends AppCompatActivity {
         setTheme(R.style.Theme_AppCompat);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        SharedPreferenceHAn hAn = new SharedPreferenceHAn(getApplicationContext());
+        for (Language language : Language.values()) {
+            if (language.toString().equals(hAn.getCurrentLanguage()))
+                setLanguage(language.getLanguageCode());
+        }
+
         final int[] gameTypesSize = new int[1];
         gameTypeViewModel = new ViewModelProvider(this).get(GameTypeViewModel.class);
         gameTypeViewModel.getAllGameTypes().observe(this, gameTypes -> {
@@ -112,6 +125,15 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void setLanguage(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
     @Override

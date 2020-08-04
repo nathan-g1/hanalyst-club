@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lifecycle.fragments.FragmentLanguageChooser">
+
+    <ListView
+        android:id="@+id/list_view_for_languages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:layout_above="@+id/button_section"
+        android:dividerHeight="0dp"/>
+
+        <RelativeLayout
+            android:id="@+id/button_section"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/set_new_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/round_layout"
+                android:text="@string/set"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/cancel_language_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_toStartOf="@+id/set_new_language"
+                android:background="@drawable/round_layout"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+</RelativeLayout>
