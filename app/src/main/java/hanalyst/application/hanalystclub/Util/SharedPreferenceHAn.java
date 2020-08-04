@@ -7,6 +7,7 @@ public class SharedPreferenceHAn {
     private static final String PLAYING_TEAM_NAME = "PLAYING_TEAM_NAME";
     private static final String CURRENT_GAME_ID = "CURRENT_GAME_ID";
     private static final String CURRENT_GAME_DETAILS_ID = "CURRENT_GAME_DETAILS_ID";
+    private static final String CURRENT_LANGUAGE = "CURRENT_LANGUAGE";
     private Context context;
     private static final String TEAM_NAME = "TEAM_NAME";
     private static final String TEAM_ID = "TEAM_ID";
@@ -56,5 +57,12 @@ public class SharedPreferenceHAn {
 
     public void signOut() {
         PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
+    }
+
+    public void setCurrentLanguage(String language) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(CURRENT_LANGUAGE, language).apply();
+    }
+    public String getCurrentLanguage() {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(CURRENT_LANGUAGE,"English");
     }
 }

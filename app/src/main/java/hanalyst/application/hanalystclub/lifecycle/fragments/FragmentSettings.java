@@ -1,8 +1,6 @@
 package hanalyst.application.hanalystclub.lifecycle.fragments;
 
-import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.lifecycle.Observer;
@@ -107,9 +104,9 @@ public class FragmentSettings extends Fragment {
         LinearLayout changeLanguage = view.findViewById(R.id.language_section);
         LinearLayout signOut = view.findViewById(R.id.logout_section);
 
-        changePin.setOnClickListener(v -> {
-            gotoChangePinFragment();
-        });
+        changePin.setOnClickListener(v -> gotoChangePinFragment());
+
+        changeLanguage.setOnClickListener(v -> gotoChangeLanguageFragment());
 
 
         signOut.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +149,16 @@ public class FragmentSettings extends Fragment {
                 .addToBackStack(null)
                 .commit();
     }
+
+    private void gotoChangeLanguageFragment() {
+        FragmentLanguageChooser fragmentLanguageChooser = new FragmentLanguageChooser();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_fragment_switcher, fragmentLanguageChooser, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
+    }
+
+
 
     private void clearPreferences() {
         try {

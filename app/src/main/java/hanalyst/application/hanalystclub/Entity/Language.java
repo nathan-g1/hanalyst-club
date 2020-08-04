@@ -20,7 +20,7 @@ public enum Language {
         return type;
     }
 
-    public String getLanguageType() {
+    public String getLanguageCode() {
         return shortCode;
     }
 }

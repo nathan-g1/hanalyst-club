@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hossanalyst</string>
+    <string name="app_name">ሆሳናሊስት</string>
+    <string name="login">ግባ</string>
+    <string name="description_on_row_item">ገለጻ</string>
+    <string name="pause">አቁም</string>
+    <string name="display_time">ጊዜ</string>
+    <string name="home">ቤት</string>
+    <string name="recent">የቅርብ ጨወታዎች</string>
+    <string name="team">ክለብ</string>
+    <string name="report">ሪፖርት</string>
+    <string name="analyst_hint">የአናሊስት ስም</string>
+    <string name="referee_name">የዳኛ ስም</string>
+    <string name="select_game_type">የጨዋታው አይነት</string>
+    <string name="select_game_formation">አሰላለፍ</string>
+    <string name="venue">ጨዋታ ቦታ</string>
+    <string name="select_playing_players">ተጫዋቾች ምረጥ</string>
+    <string name="welcome_user">እንኳን ደህና መጡ</string>
+    <string name="incorrect_pass">የተሳሳተ ሚስጥር ቁጥር</string>
 </resources>

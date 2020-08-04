@@ -1,86 +1,86 @@
 <resources>
     <string name="app_name">Hossanalyst</string>
     <string name="login">LOGIN</string>
-    <string name="welcome_to_hossanalyst">Hossanalyst!</string>
-    <string name="title_activity_analysis">Analysis</string>
-    <string name="email">test@test.com</string>
-    <string name="pass">pass</string>
-    <string name="label_email">Email</string>
-    <string name="label_password">Password</string>
-    <string name="number_on_row_item">3</string>
+    <string name="welcome_to_hossanalyst" translatable="false">Hossanalyst!</string>
+    <string name="title_activity_analysis" translatable="false">Analysis</string>
+    <string name="email" translatable="false">test@test.com</string>
+    <string name="pass" translatable="false">pass</string>
+    <string name="label_email" translatable="false">Email</string>
+    <string name="label_password" translatable="false">Password</string>
+    <string name="number_on_row_item" translatable="false">3</string>
     <string name="description_on_row_item">Description</string>
-    <string name="effectiveness">ATT:EFF 0%</string>
+    <string name="effectiveness" translatable="false">ATT:EFF 0%</string>
     <string name="pause">PAUSE</string>
     <string name="display_time">42:23</string>
-    <string name="defense_effectiveness">DFN:EFF 0%</string>
-    <string name="playing_teams">St. Ge Vs Buna</string>
+    <string name="defense_effectiveness" translatable="false">DFN:EFF 0%</string>
+    <string name="playing_teams" translatable="false">St. Ge Vs Buna</string>
     <string name="home">Home</string>
     <string name="recent">Recent</string>
     <string name="team">Team</string>
     <string name="report">Report</string>
-    <string name="settings">Settings</string>
+    <string name="settings" translatable="false">Settings</string>
     <string name="analyst_hint">Analyst name</string>
     <string name="referee_name">Referee name</string>
     <string name="select_game_type">Select game type</string>
     <string name="select_game_formation">Select Line up</string>
     <string name="venue">Venue</string>
-    <string name="away">Away</string>
+    <string name="away" translatable="false">Away</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="select_playing_players">Select playing players</string>
-    <string name="select_opponent_team">Select opponent team</string>
+    <string name="select_opponent_team" translatable="false">Select opponent team</string>
     <string name="welcome_user">Welcome </string>
     <string name="incorrect_pass">Incorrect password</string>
-    <string name="server_not_responding">Server not responding.</string>
-    <string name="user_not_found">This email is not found. Check again.</string>
-    <string name="problem_in_network">There is a problem in your Network.</string>
-    <string name="start_analysis">Start Analysis</string>
-    <string name="start_taking_analysis">Start Taking Analysis</string>
-    <string name="change_password">Change Password</string>
-    <string name="manage_your_pin">Manage your pin</string>
-    <string name="change_language">Change Language</string>
-    <string name="select_your_preferred_language">Select your preferred language</string>
-    <string name="logout">Sign out</string>
-    <string name="long_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
-    <string name="new_player_information">New Player Information</string>
-    <string name="start_game">Start Game</string>
-    <string name="field_should_not_be_empty">Field should not be empty</string>
-    <string name="password_length_should_be_greater_than_6">Password length should be greater than 6</string>
-    <string name="field_should_be_selected">Field should be selected</string>
-    <string name="are_you_sure">Are you sure you want to sign out?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="select_zone">Select Zone</string>
-    <string name="players">Players</string>
-    <string name="captain_label">Captain</string>
-    <string name="coach_label">Coach</string>
-    <string name="analyst_label">Analyst</string>
-    <string name="_2">2</string>
-    <string name="abraham_lincoln">Abraham Lincoln</string>
-    <string name="premier_league">Premier League</string>
-    <string name="_1_0">1 - 0</string>
-    <string name="buna_vs_st_george">Buna vs St. George</string>
-    <string name="dot_or_icon">-</string>
-    <string name="live">Live</string>
-    <string name="loading">loading...</string>
-    <string name="game_starting">Game Starting</string>
-    <string name="_0">0</string>
-    <string name="st_george">St. George</string>
-    <string name="_1">1</string>
-    <string name="addis_ababa">Addis Ababa</string>
-    <string name="_4_09_pm">4:09 PM</string>
-    <string name="fri_jan_2020">Fri Jan, 2020</string>
-    <string name="info">Info</string>
-    <string name="comments">Comments</string>
-    <string name="line_ups">Line-ups</string>
-    <string name="minutes_played">12\'</string>
-    <string name="new_password">New Password</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="old_password">Old Password</string>
-    <string name="cancel">Cancel</string>
-    <string name="set">Set</string>
-    <string name="password_mismatch">Password does not match</string>
-    <string name="are_you_sure_you_want_to_delete_this_player">Are you sure you wnat to delete this player?</string>
-    <string name="remove">Remove</string>
-    <string name="new_password_set">A new password is set successfully!</string>
+    <string name="server_not_responding" translatable="false">Server not responding.</string>
+    <string name="user_not_found" translatable="false">This email is not found. Check again.</string>
+    <string name="problem_in_network" translatable="false">There is a problem in your Network.</string>
+    <string name="start_analysis" translatable="false">Start Analysis</string>
+    <string name="start_taking_analysis" translatable="false">Start Taking Analysis</string>
+    <string name="change_password" translatable="false">Change Password</string>
+    <string name="manage_your_pin" translatable="false">Manage your pin</string>
+    <string name="change_language" translatable="false">Change Language</string>
+    <string name="select_your_preferred_language" translatable="false">Select your preferred language</string>
+    <string name="logout" translatable="false">Sign out</string>
+    <string name="long_text" translatable="false">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="new_player_information" translatable="false">New Player Information</string>
+    <string name="start_game" translatable="false">Start Game</string>
+    <string name="field_should_not_be_empty" translatable="false">Field should not be empty</string>
+    <string name="password_length_should_be_greater_than_6" translatable="false">Password length should be greater than 6</string>
+    <string name="field_should_be_selected" translatable="false">Field should be selected</string>
+    <string name="are_you_sure" translatable="false">Are you sure you want to sign out?</string>
+    <string name="yes" translatable="false">Yes</string>
+    <string name="no" translatable="false">No</string>
+    <string name="select_zone" translatable="false">Select Zone</string>
+    <string name="players" translatable="false">Players</string>
+    <string name="captain_label" translatable="false">Captain</string>
+    <string name="coach_label" translatable="false">Coach</string>
+    <string name="analyst_label" translatable="false">Analyst</string>
+    <string name="_2" translatable="false">2</string>
+    <string name="abraham_lincoln" translatable="false">Abraham Lincoln</string>
+    <string name="premier_league" translatable="false">Premier League</string>
+    <string name="_1_0" translatable="false">1 - 0</string>
+    <string name="buna_vs_st_george" translatable="false">Buna vs St. George</string>
+    <string name="dot_or_icon" translatable="false">-</string>
+    <string name="live" translatable="false">Live</string>
+    <string name="loading" translatable="false">loading...</string>
+    <string name="game_starting" translatable="false">Game Starting</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="st_george" translatable="false">St. George</string>
+    <string name="_1" translatable="false">1</string>
+    <string name="addis_ababa" translatable="false">Addis Ababa</string>
+    <string name="_4_09_pm" translatable="false">4:09 PM</string>
+    <string name="fri_jan_2020" translatable="false">Fri Jan, 2020</string>
+    <string name="info" translatable="false">Info</string>
+    <string name="comments" translatable="false">Comments</string>
+    <string name="line_ups" translatable="false">Line-ups</string>
+    <string name="minutes_played" translatable="false">12\'</string>
+    <string name="new_password" translatable="false">New Password</string>
+    <string name="confirm_password" translatable="false">Confirm Password</string>
+    <string name="old_password" translatable="false">Old Password</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="set" translatable="false">Set</string>
+    <string name="password_mismatch" translatable="false">Password does not match</string>
+    <string name="are_you_sure_you_want_to_delete_this_player" translatable="false">Are you sure you wnat to delete this player?</string>
+    <string name="remove" translatable="false">Remove</string>
+    <string name="new_password_set" translatable="false">A new password is set successfully!</string>
 </resources>
