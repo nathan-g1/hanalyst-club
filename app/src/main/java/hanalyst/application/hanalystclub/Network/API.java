@@ -76,7 +76,8 @@ public interface API {
             @Field("temperature") String temperature,
             @Field("location") String location,
             @Field("gameType") String gameType,
-            @Field("playingTeams[]") List<String> playingTeams
+            @Field("playingTeams[]") List<String> playingTeams,
+            @Field("formation") String formation
     );
 
     @GET("games/{gameId}")
