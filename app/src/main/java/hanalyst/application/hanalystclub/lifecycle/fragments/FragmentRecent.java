@@ -12,7 +12,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,10 +21,8 @@ import hanalyst.application.hanalystclub.Entity.remote.RGame;
 import hanalyst.application.hanalystclub.Network.RetrofitBuilder;
 import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
-import hanalyst.application.hanalystclub.lifecycle.Analysis;
 import hanalyst.application.hanalystclub.lifecycle.HomeActivity;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameViewModel;
-import hanalyst.application.hanalystclub.lifecycle.viewmodels.NotationViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -73,7 +70,8 @@ public class FragmentRecent extends Fragment {
                                 rGame.getReferee(),
                                 rGame.getTemperature(),
                                 rGame.getGameType(),
-                                rGame.getPlayingTeams()));
+                                rGame.getPlayingTeams(),
+                                rGame.getFormation()));
                     }
                     recentGamesAdapter.setGames(gameList1);
                 }
