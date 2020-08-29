@@ -2,6 +2,7 @@ package hanalyst.application.hanalystclub.Util;
 
 import android.content.Context;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class TimeManager {
@@ -10,6 +11,12 @@ public class TimeManager {
 
     public TimeManager(Context context) {
         this.context = context;
+    }
+
+    public Calendar getCurrentMoment() {
+        Calendar x = Calendar.getInstance();
+        System.out.println();
+        return Calendar.getInstance();
     }
 
     public String getEndTime() {
@@ -47,5 +54,8 @@ public class TimeManager {
         return date.getHours() + ":" + date.getMinutes();
     }
     // TODO: MUST USE CALENDAR OR TIME CLASS
+    public int compareTo(Calendar calendar) {
+        return  Calendar.getInstance().compareTo(calendar);
+    }
 
 }

@@ -83,4 +83,5 @@
     <string name="are_you_sure_you_want_to_delete_this_player" translatable="false">Are you sure you wnat to delete this player?</string>
     <string name="remove" translatable="false">Remove</string>
     <string name="new_password_set" translatable="false">A new password is set successfully!</string>
+    <string name="resume_taking_analysis">Resume Taking Analysis</string>
 </resources>

@@ -27,6 +27,7 @@ import hanalyst.application.hanalystclub.Adapter.DefenseAdapter;
 import hanalyst.application.hanalystclub.Adapter.PlayersAdapterWithOnClick;
 import hanalyst.application.hanalystclub.Entity.Attack;
 import hanalyst.application.hanalystclub.Entity.Defense;
+import hanalyst.application.hanalystclub.Entity.Game;
 import hanalyst.application.hanalystclub.Entity.Notation;
 import hanalyst.application.hanalystclub.Entity.Player;
 import hanalyst.application.hanalystclub.Entity.remote.RNotation;
@@ -34,6 +35,8 @@ import hanalyst.application.hanalystclub.Network.API;
 import hanalyst.application.hanalystclub.R;
 import hanalyst.application.hanalystclub.Util.AnalysisFactory;
 import hanalyst.application.hanalystclub.Util.SharedPreferenceHAn;
+import hanalyst.application.hanalystclub.Util.TimeManager;
+import hanalyst.application.hanalystclub.lifecycle.viewmodels.GameViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.NotationViewModel;
 import hanalyst.application.hanalystclub.lifecycle.viewmodels.PlayerViewModel;
 import retrofit2.Call;
@@ -56,6 +59,7 @@ public class Analysis extends AppCompatActivity {
     double defEffectiveness = 0;
     private SharedPreferenceHAn sharedPreferenceHAn;
     private List<Player> allPlayers;
+    GameViewModel gameViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,7 @@ public class Analysis extends AppCompatActivity {
         effDefence = findViewById(R.id.textView_defence_effectiveness);
         teamsDisplay = findViewById(R.id.textView_playing_teams);
         teamsDisplay.setText(sharedPreferenceHAn.getPlayingTeams());
-
+        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
         // Attack
         final ArrayList<Attack> attacks = new AnalysisFactory().getAttackList();
         final AttackAdapter attackAdapter = new AttackAdapter(getApplicationContext(), attacks);
@@ -336,6 +340,33 @@ public class Analysis extends AppCompatActivity {
             @Override
             public void onFailure(Call<RNotation> call, Throwable t) {
                 Toast.makeText(Analysis.this, R.string.problem_in_network, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        List<Game> gameList = new ArrayList<>();
+        gameViewModel.getAllGames().observe(this, games -> {
+            gameList.addAll(gameList);
+            TimeManager timeManager = new TimeManager(getApplicationContext());
+            for (Game game : gameList) {
+                if (timeManager.isGameInProgress(game.getEndTime())) {
+                    gameViewModel.updateGame(new Game(
+                            game.getId(),
+                                    game.getStartTime(),
+                                    game.getEndTime(),
+                                    game.getVenue(),
+                                    game.isHa(),
+                                    game.getReferee(),
+                                    game.getTemperature(),
+                                    game.getGameType(),
+                                    game.getPlayingTeams(),
+                                    game.getFormation()
+                    ));
+                }
             }
         });
 
